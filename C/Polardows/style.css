@@ -1,0 +1,29 @@
+:root{
+    --TaskbarHeight: 50px;
+    --TaskbarColor: #585858;
+    --TaskbarBorderColor: #dededc;
+    --DesktopHeight: calc(100% - var(--TaskbarHeight));
+    --DesktopColor: #edece7;
+}
+body, html{
+    margin:0px;
+    width: 100%;
+    height: 100%;
+}
+.screen{
+    width: 100%;
+    height: 100%;
+    display:flex;
+    flex-direction:column;
+}
+.screen .desktop{
+    width: 100%;
+    height: var(--DesktopHeight);
+    background-color: var(--DesktopColor);
+}
+.screen .taskbar{
+    width: 100%;
+    height: var(--TaskbarHeight);
+    background-color: var(--TaskbarColor);
+    border-top: 1px solid var(--TaskbarBorderColor);
+}
