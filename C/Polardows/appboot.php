@@ -12,6 +12,10 @@
         if(array_search('config.txt',$app[$k])) $app[$k][1] =  json_decode(file_get_contents($appsfolder.$v."/config.txt"),true);
         else $app[$k][1] = false;
 
+        if($app[$k][1] != false){
+            $app[$k][1]['app_name'] = explode(" ", $app[$k][1]['app_name']);
+        }
+
         /* search if app exists */
         if(array_search('app.php',$app[$k])) $app[$k][2] = 'app.php';
         else $app[$k][2] = false;
