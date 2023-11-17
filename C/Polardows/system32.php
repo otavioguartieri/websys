@@ -4,11 +4,13 @@
     <title>Pol 11</title>
     <link rel="stylesheet" href="C/Polardows/style.css">
     <link rel="shortcut icon" href="C/Polardows/icon.png" type="image/x-icon">
+    <script src="C/Polardows/script.js"></script>
+    <script src="C/Polardows/jquery-3.6.1.min.js"></script>
 </head>
 <body>
-    <div class="screen">
-        <div class="desktop">desktop</div>
-        <div class="taskbar">taskbar</div>
+    <div id="screen">
+        <div id="desktop">desktop</div>
+        <div id="taskbar">taskbar</div>
     </div>
 </body>
 </html>

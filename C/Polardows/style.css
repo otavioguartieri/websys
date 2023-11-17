@@ -10,18 +10,18 @@ body, html{
     width: 100%;
     height: 100%;
 }
-.screen{
+#screen{
     width: 100%;
     height: 100%;
     display:flex;
     flex-direction:column;
 }
-.screen .desktop{
+#screen #desktop{
     width: 100%;
     height: var(--DesktopHeight);
     background-color: var(--DesktopColor);
 }
-.screen .taskbar{
+#screen #taskbar{
     width: 100%;
     height: var(--TaskbarHeight);
     background-color: var(--TaskbarColor);
