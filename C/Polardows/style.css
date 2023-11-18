@@ -4,6 +4,7 @@
     --TaskbarBorderColor: #dededc;
     --DesktopHeight: calc(100% - var(--TaskbarHeight));
     --DesktopColor: #edece7;
+    --DesktopAppSize: 70px;
 }
 body, html{
     margin:0px;
@@ -18,6 +19,7 @@ body, html{
     flex-direction:column;
 }
 #screen #desktop{
+    display: flex;
     width: 100%;
     height: var(--DesktopHeight);
     background-color: var(--DesktopColor);
@@ -32,8 +34,8 @@ body, html{
 app{
     margin: 2px;
     padding: 2px;
-    height: 70px;
-    width: 70px;
+    height: var(--DesktopAppSize);
+    width: var(--DesktopAppSize);
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -41,13 +43,15 @@ app{
 }
 app img{
     object-fit: contain;
-    height: 50%;
+    height: 55%;
 }
 app font{
-    height: 45%;
-    line-height: 14px;
+    height: 40%;
+    line-height: 16px;
+    text-align: center;
+    font-size: 12px;
 
+    /* white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    text-overflow: ellipsis; */
 }

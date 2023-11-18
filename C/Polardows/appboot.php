@@ -30,16 +30,10 @@
         /* defines the value [0] w/ the folder name */
         $app[$k][0] = $v;
     }
-
-    /* foreach($project as $k => $v){
-        if(explode('.',$project[$k])[1] == 'php' || explode('.',$project[$k])[0] == 'home' || substr($project[$k], 0, 2) == '__' ){
-            unset($project[$k]);
-        }
-    }*/
     
     exit(json_encode([
         'data' => $app,
         'result'=>'1',
         'header'=>header('Content-Type: application/json')
-    ])); 
+    ]));
 ?>

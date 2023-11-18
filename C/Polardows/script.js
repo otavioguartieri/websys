@@ -4,64 +4,75 @@ setTimeout(function(){
 
 function RunDesktop(){
 
+    /* base params */
+    var appSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--DesktopAppSize').replace('px','')); /* app size defined on css root */
+    var nameSize = 0;
+    var lineCount = 0;
+    var appName = '';
+    var appNameOpen = '';
+
+    /* post to php to get apps information */
     $.post('C/Polardows/appboot.php',null,function(data){
-        if(data.result > -1)
+        if(data.result > -1) /* verify if the post has been succeded */
         $(data.data).each(function(index, item) {
-            if(item[1]['app_launch']){
-                console.log(item);
+            if(item[1]['app_launch']){ /* if the app is marked as launched the code proceed */
+
+                /* clear the vars at each app */
+                nameSize = 0;
+                lineCount = 1;
+                appName = '';
+                appNameOpen = '';
+
+                /* function to count and cut the space of the apps name */
+                $(item[1]['app_name']).each(function(k,v){
+                    nameSize+=obterTamanhoTexto(v)['width']; /* get each word size in width */
+                    if(nameSize <= appSize){ /* verify if is fit on the inside of the label */
+                        appName = `${appName}`+`${v}`+' '; /* add to the final label */
+                    }else{
+                        if(appName == ''){ /* verify the lenght in case the size of the word is bigger than the app size, then add the first line */
+                            appName = `${v}`+' ';
+                        }else{ /* else, it just keep breaking lines and proceed to the final label */
+                            appName = `${appName.slice(0, -1)}`+'<br>'+`${v}`+' ';
+                        }
+                        lineCount++; /* add in the line breaking count */
+                        nameSize = 0; /* clear the sum of all the words to start over on the new line */
+                    }
+                });
+                if(lineCount > 2){ /* if the line amount is bigger than 2, it will add a mask and the "..." at the end of it */
+                    appNameOpen = appName;
+                    appName = `${appName.split('<br>')[0]}`+'...';
+                    while(obterTamanhoTexto(appName)['width'] > appSize+30){
+                        appName = `${appName.slice(0, -4)}`+'...';
+                    }
+                }
+                /* add the final app into the desktop workspace */
                 $('#desktop').append(`
                     <app id="${item[1]['app_id']}">
                         <img src="C/Program Files/${item[0]}/${item[1]['app_image']}">
-                        <font>${item[1]['app_name']}</font>
+                        <font class="close">${appName}</font>
+                        <font class="open">${appNameOpen}</font>
                     </app>
                 `);
-                console.log(obterTamanhoTexto(item[1]['app_name']))
             }
         });
-            /* if(item.indexOf('stylesheet.txt') >= 0 && item[2] != 'none') app_style = item[2]; 
-
-            if(item.indexOf('icon.png') >= 0){
-                app_icon = `../files/${item[0]}/icon.png`;
-            }else if(item.indexOf('icon.gif') >= 0){
-                app_icon = `../files/${item[0]}/icon.gif`;
-            }
-
-            app_name = item[1];
-
-            if(item.indexOf('app.php') >= 0){
-                tag_id = item[0].toLowerCase().replace(' ','')+'_'+generateStringWords(8).replace(' ', '')+'_'+generateStringNums(4).replace(' ', '');
-
-                $('.areashow').append(`
-                    <div onclick="destaqueApp(this)" id="${tag_id}" class="app">
-                        <div ondblclick="$('.screen').addClass('loading');setTimeout(() => {IframeCall('/?v=${item[0]}','${tag_id}','${app_name}','${app_icon}');$('.screen').removeClass('loading');}, 1234);" id="${tag_id}" class="descricao max-desc20">${app_name}</div>
-                        <div ondblclick="$('.screen').addClass('loading');setTimeout(() => {IframeCall('/?v=${item[0]}','${tag_id}','${app_name}','${app_icon}');$('.screen').removeClass('loading');}, 1234);" id="${tag_id}" style="background-image: url(${app_icon}); background-repeat: no-repeat; background-size: contain;z-index:0;background-position: center;${app_style}" class="icon"></div>
-                    </div>
-                `);
-            } */
-        /* $('.areashow').append(`
-            <div onclick="destaqueApp(this)" id="YouTube" class="app">
-                <div ondblclick="$('.screen').addClass('loading');setTimeout(() => {IframeCall('https://www.youtube.com/','YouTube','Youtube','https://www.goiania.go.leg.br/imagens/icon_youtube.png/image');$('.screen').removeClass('loading');}, 1234);" id="YouTube" class="descricao max-desc20">Youtube</div>
-                <div ondblclick="$('.screen').addClass('loading');setTimeout(() => {IframeCall('https://www.youtube.com/','YouTube','Youtube','https://www.goiania.go.leg.br/imagens/icon_youtube.png/image');$('.screen').removeClass('loading');}, 1234);" id="YouTube" style="background-image: url(https://www.goiania.go.leg.br/imagens/icon_youtube.png/image); background-repeat: no-repeat; background-size: contain;z-index:0;background-position: center;" class="icon"></div>
-            </div>
-        `); */
-        
     }); 
 
-    function obterTamanhoTexto(texto) {
-        // Crie um elemento de texto temporário
-        var elementoTemporario = $('<span>').html(texto);
+    function obterTamanhoTexto(text,par) {
+        /* create a temporary text element */
+        var tempElement = $('<span>').html(text);
       
-        // Adicione o elemento temporário ao corpo do documento
-        $('body').append(elementoTemporario);
+        /* add the temp element into the docuemnt body */
+        $('body').append(tempElement);
       
-        // Obtenha as dimensões do elemento
-        var largura = elementoTemporario.width();
-        var altura = elementoTemporario.height();
+        /* gets the size of the temp element */
+        var width = tempElement.width()+1;
+        var height = tempElement.height();
       
-        // Remova o elemento temporário do corpo do documento
-        elementoTemporario.remove();
-      
-        // Retorne as dimensões do texto
-        return { largura: largura, altura: altura };
+        /* remove the temp element from the document body*/
+        tempElement.remove();
+
+        /* Return text dimensions */
+        /* for each pixel below "16px" in the app label css size, add 3 in teh width */
+        return {word:text, width: width+12, height: height };
       }
 }
