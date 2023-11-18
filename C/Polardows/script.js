@@ -47,10 +47,10 @@ function RunDesktop(){
                 }
                 /* add the final app into the desktop workspace */
                 $('#desktop').append(`
-                    <app id="${item[1]['app_id']}">
+                    <app id="${item[1]['app_id']}" class="close">
                         <img src="C/Program Files/${item[0]}/${item[1]['app_image']}">
                         <font class="close">${appName}</font>
-                        <font class="open">${appNameOpen}</font>
+                        <font class="open">${appNameOpen || appName}</font>
                     </app>
                 `);
             }
@@ -60,19 +60,35 @@ function RunDesktop(){
     function obterTamanhoTexto(text,par) {
         /* create a temporary text element */
         var tempElement = $('<span>').html(text);
-      
+    
         /* add the temp element into the docuemnt body */
         $('body').append(tempElement);
-      
+    
         /* gets the size of the temp element */
         var width = tempElement.width()+1;
         var height = tempElement.height();
-      
+    
         /* remove the temp element from the document body*/
         tempElement.remove();
 
         /* Return text dimensions */
         /* for each pixel below "16px" in the app label css size, add 3 in teh width */
         return {word:text, width: width+12, height: height };
-      }
+    }
+
+    // Remove a classe quando qualquer outra parte do documento é clicada
+    $(document).on('click', function(event){
+
+        if ($(event.target).closest('app').length == 0) {
+        // Se o clique não ocorreu dentro do elemento, remove a classe
+            $('app').removeClass('highlight');
+        }
+
+        if ($(event.target).closest('app').length == 1) {
+        // Se o clique não ocorreu dentro do elemento, remove a classe
+            $('app').removeClass('highlight');
+            $($(event.target).closest('app')[0]).addClass('highlight');
+        }
+
+    });
 }
