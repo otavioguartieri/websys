@@ -2,6 +2,14 @@ setTimeout(function(){
     RunDesktop();
 },1000);
 
+function highlight(e) {
+    e.classList.add('mouseOver');
+}
+
+function removeHighlight(e) {
+    e.classList.remove('mouseOver');
+}
+
 function RunDesktop(){
 
     /* base params */
@@ -38,19 +46,21 @@ function RunDesktop(){
                         nameSize = 0; /* clear the sum of all the words to start over on the new line */
                     }
                 });
-                if(lineCount > 2){ /* if the line amount is bigger than 2, it will add a mask and the "..." at the end of it */
+                if(lineCount > 2 || obterTamanhoTexto(appName)['width'] > appSize){ /* if the line amount is bigger than 2, it will add a mask and the "..." at the end of it */
                     appNameOpen = appName;
                     appName = `${appName.split('<br>')[0]}`+'...';
-                    while(obterTamanhoTexto(appName)['width'] > appSize+30){
+                    while(obterTamanhoTexto(appName)['width'] > appSize+20){
                         appName = `${appName.slice(0, -4)}`+'...';
                     }
                 }
                 /* add the final app into the desktop workspace */
                 $('#desktop').append(`
-                    <app id="${item[1]['app_id']}" class="close">
-                        <img src="C/Program Files/${item[0]}/${item[1]['app_image']}">
-                        <font class="close">${appName}</font>
-                        <font class="open">${appNameOpen || appName}</font>
+                    <app onmouseover="highlight(this)" onmouseout="removeHighlight(this)" id="${item[1]['app_id']}" class="close">
+                        <div class="app_display">
+                            <img src="C/Program Files/${item[0]}/${item[1]['app_image']}">
+                            <font class="close">${appName}</font>
+                            <font class="open">${appNameOpen || appName}</font>
+                        </div>
                     </app>
                 `);
             }
@@ -81,14 +91,18 @@ function RunDesktop(){
 
         if ($(event.target).closest('app').length == 0) {
         // Se o clique não ocorreu dentro do elemento, remove a classe
-            $('app').removeClass('highlight');
+            $('app').removeClass('mouseClicked').addClass('close');
         }
 
         if ($(event.target).closest('app').length == 1) {
         // Se o clique não ocorreu dentro do elemento, remove a classe
-            $('app').removeClass('highlight');
-            $($(event.target).closest('app')[0]).addClass('highlight');
+            $('app').removeClass('mouseClicked').addClass('close');
+            $($(event.target).closest('app')[0]).addClass('mouseClicked').removeClass('close');
         }
 
     });
+
+    $('img').ondragstart = () => {
+        return false;
+    };
 }

@@ -5,6 +5,7 @@
     --DesktopHeight: calc(100% - var(--TaskbarHeight));
     --DesktopColor: #edece7;
     --DesktopAppSize: 70px;
+    --DesktopAppImageSize: calc(var(--DesktopAppSize) / 1.8);
 }
 body, html{
     margin:0px;
@@ -20,9 +21,10 @@ body, html{
 }
 #screen #desktop{
     display: flex;
-    width: 100%;
+    width: calc(100% - 2px);
     height: var(--DesktopHeight);
     background-color: var(--DesktopColor);
+    padding: 1px;
 }
 #screen #taskbar{
     width: 100%;
@@ -32,35 +34,60 @@ body, html{
 }
 
 app{
-    margin: 2px;
-    padding: 2px;
     height: var(--DesktopAppSize);
     width: var(--DesktopAppSize);
+    min-height: var(--DesktopAppSize);
+    min-width: var(--DesktopAppSize);
+    z-index: 1;
+    padding: 1px;
+    cursor: default;
+    user-select: none;
+}
+app .app_display{
+    height: calc(100% - 4px);
+    min-height: calc(100% - 4px);
+    width: calc(100% - 4px);
+    min-width: calc(100% - 4px);
+    padding: 2px 1px;
     display: flex;
-    justify-content: space-between;
     flex-direction: column;
-    background-color: green;
+    z-index: 1;
+    background-color: #00000000;
+    border-radius: 3px;
+    border: 1px solid #00000000;
 }
 app img{
     object-fit: contain;
-    height: 55%;
+    height: var(--DesktopAppImageSize);
 }
 app font{
-    height: 40%;
-    line-height: 14px;
+    height: calc(100% - var(--DesktopAppImageSize));
+    margin-top: 2px;
+    line-height: 13px;
     text-align: center;
     font-size: 12px;
+    color: #fff;
+    word-wrap: break-word;
+    padding: 0 2px;
+    font-weight: 100;
+    text-shadow: 0px 0px 2px rgba(0,0,0,1), 0px 0px 2px rgba(0,0,0,1), 0px 0px 3px rgba(0,0,0,1), 0px 0px 3px rgba(0,0,0,1), 0px 0px 6px rgba(0,0,0,1), 0px 0px 6px rgba(0,0,0,1);
 }
 app.close font.open{
     display:none;
 }
-app.open font.close{
+app.mouseClicked font.close{
     display:none;
 }
-app.open font.open{
-    margin-top: 3px;
-}
 
-.highlight {
-    background-color: yellow;
-  }
+app.mouseClicked{
+    z-index: 2;
+}
+app.mouseClicked .app_display{
+    height: auto;
+    background-color: #0000000a;
+    border: 1px solid #0000001f;
+}
+app.mouseOver .app_display{
+    background-color: #00000004;
+    border: 1px solid #0000000f;
+}

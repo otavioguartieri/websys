@@ -1,0 +1,7 @@
+{
+    "app_installed":true,
+    "app_launch":true,
+    "app_id":"12",
+    "app_name":"EpicGamesUltrassonicagames2000",
+    "app_image":"/appdata/appimages/QIIWKkaIIqkaI.png"
+}
