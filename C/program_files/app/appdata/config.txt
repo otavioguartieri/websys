@@ -1,0 +1,6 @@
+{
+    "app_installed": true,
+    "app_launch": false,
+    "app_name": "app name",
+    "app_image": "/appdata/appimages/icon.png"
+}

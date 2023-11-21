@@ -1,7 +1,0 @@
-{
-    "app_installed": true,
-    "app_launch": true,
-    "app_name": "Steam1234 2000 ssdsd a aswwds sss sdddws ss",
-    "app_image": "\/appdata\/appimages\/Steam_icon.png",
-    "app_id": "5e2ff72d8559"
-}
