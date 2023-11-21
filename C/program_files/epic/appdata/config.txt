@@ -1,0 +1,7 @@
+{
+    "app_installed": true,
+    "app_launch": true,
+    "app_name": "Epic Games",
+    "app_image": "\/appdata\/appimages\/QIIWKkaIIqkaI.png",
+    "app_id": "4be41ced2bdb"
+}

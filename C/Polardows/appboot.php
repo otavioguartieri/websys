@@ -1,18 +1,24 @@
 <?php
-    $appsfolder = "../Program Files/";
+    $appsfolder = "../program_files/";
     $app = []; /* create new array for the apps */
     $project = scandir($appsfolder); /* search for folders somewhere */
     array_shift($project); /* remove the first "." from array (trash) */
     array_shift($project); /* remove the second ".." from array (trash) */
 
     foreach($project as $k => $v){ /* $k is the key from array ex: [0] $v is the value... lol */
-        $app[$k] = scandir($appsfolder.$v);  /* search in every folder */
+        $app[$k] = scandir($appsfolder.$v."/appdata/");  /* search in every folder */
 
         /* search if app config file exists */
-        if(array_search('config.txt',$app[$k])) $app[$k][1] =  json_decode(file_get_contents($appsfolder.$v."/config.txt"),true);
+        if(array_search('config.txt',$app[$k])) $app[$k][1] =  json_decode(file_get_contents($appsfolder.$v."/appdata/config.txt"),true);
         else $app[$k][1] = false;
 
-        if($app[$k][1] != false){
+        if($app[$k][1] != false && $app[$k][1]['app_launch'] == true){
+
+            if($app[$k][1]['app_id'] == null)
+                $app[$k][1]['app_id'] = str_split(md5($v.$app[$k][1]['app_name']), 12)[0];
+
+            file_put_contents($appsfolder.$v."/appdata/config.txt", json_encode($app[$k][1], JSON_PRETTY_PRINT));
+
             $app[$k][1]['app_name'] = explode(" ", $app[$k][1]['app_name']);
         }
 

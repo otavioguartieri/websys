@@ -1,5 +1,5 @@
 setTimeout(function(){
-    RunDesktop();
+    System();
 },1000);
 
 function highlight(e) {
@@ -10,7 +10,94 @@ function removeHighlight(e) {
     e.classList.remove('mouseOver');
 }
 
-function RunDesktop(){
+function appOpen(path) {
+    window.open(`${window.location.href.replace(/\/[^\/]*$/, '')}/C/program_files/${path}/app.php`, "_blank");
+}
+
+/* salvar alteração de guia do usuario */
+/* var hidden, visibilityChange;
+if (typeof document.hidden !== "undefined") {
+    hidden = "hidden";
+    visibilityChange = "visibilitychange";
+} else if (typeof document.mozHidden !== "undefined") {
+    hidden = "mozHidden";
+    visibilityChange = "mozvisibilitychange";
+} else if (typeof document.msHidden !== "undefined") {
+    hidden = "msHidden";
+    visibilityChange = "msvisibilitychange";
+} else if (typeof document.webkitHidden !== "undefined") {
+    hidden = "webkitHidden";
+    visibilityChange = "webkitvisibilitychange";
+}
+document.addEventListener(visibilityChange, acao, false);
+function acao() {
+        setItem('voltou', Date.now());
+    if (getItem("saiubase") === null) {
+        setItem('saiubase', Date.now());
+    }else{
+        var saiubase = getItem('saiubase');
+        setItem('saiu', saiubase);
+        removeItem('saiubase');
+    }
+} */
+
+function setItem(name,value){
+    localStorage.setItem(name, value);
+}
+function removeItem(name){
+    localStorage.removeItem(name);
+}
+function getItem(name){
+    return localStorage.getItem(name);
+}
+function switchtab(tab){
+    window.location.href = tab;
+}
+
+const characters_generatorWords ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+const characters_generatorNums ='0123456789';
+function generateStringWords(length) {
+    let result = '';
+    const charactersLength = characters_generatorWords.length;
+    for ( let i = 0; i < length; i++ ) {
+        result += characters_generatorWords.charAt(Math.floor(Math.random() * charactersLength));
+    }
+
+    return result;
+}
+
+function generateStringNums(length) {
+    let result = '';
+    const charactersLength = characters_generatorNums.length;
+    for ( let i = 0; i < length; i++ ) {
+        result += characters_generatorNums.charAt(Math.floor(Math.random() * charactersLength));
+    }
+
+    return result;
+}
+
+function resizeIframe(obj) {
+    obj.style.height = (obj.contentWindow.document.documentElement.scrollHeight) + 'px';
+    obj.style.width  = (obj.contentWindow.document.documentElement.scrollWidth) +'px';
+}
+
+function getdateClean(){
+    var date = new Date;
+    return date.getDate()+
+            ""+(date.getMonth()+1)+
+            ""+date.getFullYear()+
+            ""+date.getHours()+
+            ""+date.getMinutes()+
+            ""+date.getSeconds();
+}
+
+/* gera numero aleatorio até certo limite determinado*/
+function randomNum(limit){
+    return Math.floor(Math.random() * (limit));
+}
+
+/* inicia o sistema no desktop */
+function System(){
 
     /* base params */
     var appSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--DesktopAppSize').replace('px','')); /* app size defined on css root */
@@ -20,7 +107,7 @@ function RunDesktop(){
     var appNameOpen = '';
 
     /* post to php to get apps information */
-    $.post('C/Polardows/appboot.php',null,function(data){
+    $.post('C/polardows/appboot.php',null,function(data){
         if(data.result > -1) /* verify if the post has been succeded */
         $(data.data).each(function(index, item) {
             if(item[1]['app_launch']){ /* if the app is marked as launched the code proceed */
@@ -46,18 +133,18 @@ function RunDesktop(){
                         nameSize = 0; /* clear the sum of all the words to start over on the new line */
                     }
                 });
-                if(lineCount > 2 || obterTamanhoTexto(appName)['width'] > appSize){ /* if the line amount is bigger than 2, it will add a mask and the "..." at the end of it */
+                if(lineCount > 2){ /* if the line amount is bigger than 2, it will add a mask and the "..." at the end of it */
                     appNameOpen = appName;
                     appName = `${appName.split('<br>')[0]}`+'...';
-                    while(obterTamanhoTexto(appName)['width'] > appSize+20){
+                    while(obterTamanhoTexto(appName)['width'] > appSize + 26){
                         appName = `${appName.slice(0, -4)}`+'...';
                     }
                 }
                 /* add the final app into the desktop workspace */
                 $('#desktop').append(`
-                    <app onmouseover="highlight(this)" onmouseout="removeHighlight(this)" id="${item[1]['app_id']}" class="close">
+                    <app onmouseover="highlight(this)" onmouseout="removeHighlight(this)" ondblclick="appOpen('${item[0]}');" id="${item[1]['app_id']}" class="close">
                         <div class="app_display">
-                            <img src="C/Program Files/${item[0]}/${item[1]['app_image']}">
+                            <div class="app_icon" style="--DesktopAppImage:url('../program_files/${item[0]}${item[1]['app_image']}');"></div>
                             <font class="close">${appName}</font>
                             <font class="open">${appNameOpen || appName}</font>
                         </div>
@@ -67,6 +154,12 @@ function RunDesktop(){
         });
     }); 
 
+    // Manipulador de clique para o botão
+    $("#abrirLink").click(function() {
+        var parteDaString = "pasta/nome.php"; // Substitua com sua parte de string
+        abrirLinkEmNovaGuia(parteDaString);
+    });
+    
     function obterTamanhoTexto(text,par) {
         /* create a temporary text element */
         var tempElement = $('<span>').html(text);
@@ -105,4 +198,8 @@ function RunDesktop(){
     $('img').ondragstart = () => {
         return false;
     };
+
+    setTimeout(function(){
+        $('#screen').removeClass('cursor_progress');
+    },300);
 }

@@ -1,0 +1,7 @@
+{
+    "app_installed": true,
+    "app_launch": true,
+    "app_name": "VALORANT",
+    "app_image": "\/appdata\/appimages\/V_Logomark_Red.png",
+    "app_id": "34d4d6cd6c35"
+}

@@ -1,0 +1,7 @@
+{
+    "app_installed": true,
+    "app_launch": true,
+    "app_name": "TETRIS",
+    "app_image": "\/appdata\/appimages\/icon.png",
+    "app_id": "5886856b4e55"
+}

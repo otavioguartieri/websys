@@ -4,8 +4,9 @@
     --TaskbarBorderColor: #dededc;
     --DesktopHeight: calc(100% - var(--TaskbarHeight));
     --DesktopColor: #edece7;
-    --DesktopAppSize: 70px;
+    --DesktopAppSize: 72px;
     --DesktopAppImageSize: calc(var(--DesktopAppSize) / 1.8);
+    --DesktopAppImage: url('');
 }
 body, html{
     margin:0px;
@@ -13,6 +14,11 @@ body, html{
     height: 100%;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.cursor_progress{
+    cursor: progress;
+}
+
 #screen{
     width: 100%;
     height: 100%;
@@ -56,16 +62,21 @@ app .app_display{
     border-radius: 3px;
     border: 1px solid #00000000;
 }
-app img{
-    object-fit: contain;
-    height: var(--DesktopAppImageSize);
+app .app_icon{
+    background-image: var(--DesktopAppImage);
+    min-height: var(--DesktopAppImageSize);
+    width: var(--DesktopAppImageSize);
+    margin: 0 auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 app font{
     height: calc(100% - var(--DesktopAppImageSize));
-    margin-top: 2px;
-    line-height: 13px;
+    margin-top: 3px;
+    line-height: 12px;
     text-align: center;
-    font-size: 12px;
+    font-size: 11px;
     color: #fff;
     word-wrap: break-word;
     padding: 0 2px;
