@@ -58,6 +58,9 @@
 </div>
 <?php include_once '../../polardows/desktop/end.php' ; ?>
 <script>
+
+    document.title = 'Tetris';
+
     var arena = '.arena .gamearea';
     var height = 21; /* 20 + 1 for wall */
     var width = 12; /* 10 + 2 for walls */

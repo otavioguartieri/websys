@@ -1,0 +1,7 @@
+{
+    "app_installed": true,
+    "app_launch": true,
+    "app_name": "Paint Tool",
+    "app_image": "\/appdata\/appimages\/icon.gif",
+    "app_id": "2db8abdb7b11"
+}
