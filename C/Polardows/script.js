@@ -91,12 +91,34 @@ function getdateClean(){
             ""+date.getSeconds();
 }
 
-/* gera numero aleatorio até certo limite determinado*/
+/* generate random numbers. with limit  */
 function randomNum(limit){
     return Math.floor(Math.random() * (limit));
 }
 
-/* inicia o sistema no desktop */
+// Função para retornar as coordenadas do mouse
+function getMouseCoordinates(event,pos) {
+    if(pos == 'x')
+        return event.clientX;
+    if(pos == 'y')
+        return event.clientY;
+}
+
+// Função para exibir as coordenadas do mouse no console
+function logMouseCoordinates() {
+    console.log('left: ' + getMouseCoordinates(lastMouseEvent,'x') + ', top: ' + getMouseCoordinates(lastMouseEvent,'y'));
+}
+
+// capture the last mouse pos
+let lastMouseEvent;
+document.addEventListener('mousemove', function(event) {
+    lastMouseEvent = event;
+});
+
+// show the mouse cord on the cosole every tick set
+/* setInterval(logMouseCoordinates, 100); */
+
+/* initiate and display desktop */
 function System(){
 
     /* base params */
