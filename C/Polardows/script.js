@@ -2,6 +2,14 @@ setTimeout(function(){
     System();
 },1000);
 
+setInterval(function(){
+    $('.draggable').not('[draggable]').each(function() {
+        $(this).attr('ondragstart', `calcularPosicaoMouseStart(event);${$(this).attr('ondragstart') || ''}`);
+        $(this).attr('ondrag', `calcularPosicaoMouse(event,this);${$(this).attr('ondragstart') || ''}`);
+        $(this).attr('draggable', `true`);
+    })
+},500);
+
 function highlight(e) {
     e.classList.add('mouseOver');
 }
@@ -76,11 +84,6 @@ function generateStringNums(length) {
     return result;
 }
 
-function resizeIframe(obj) {
-    obj.style.height = (obj.contentWindow.document.documentElement.scrollHeight) + 'px';
-    obj.style.width  = (obj.contentWindow.document.documentElement.scrollWidth) +'px';
-}
-
 function getdateClean(){
     var date = new Date;
     return date.getDate()+
@@ -96,26 +99,24 @@ function randomNum(limit){
     return Math.floor(Math.random() * (limit));
 }
 
-// Função para retornar as coordenadas do mouse
-function getMouseCoordinates(event,pos) {
-    if(pos == 'x')
-        return event.clientX;
-    if(pos == 'y')
-        return event.clientY;
+/* function to make things draggable */
+var posicaoInicial = { x: 0, y: 0 };
+function calcularPosicaoMouseStart(event) {
+    var rect = event.target.getBoundingClientRect();
+    posicaoInicial['x'] = event.clientX - rect.left;
+    posicaoInicial['y'] = event.clientY - rect.top;
+}
+function calcularPosicaoMouse(event,e) {
+    var rect = event.target.getBoundingClientRect();
+    var x = event.clientX - rect.left;
+    var y = event.clientY - rect.top;
+    if(parseInt($(e).css('left').replace('px','')) + x - posicaoInicial['x'] >=  0)
+        $(e).css('left',`+=${x - posicaoInicial['x']}px`);
+    if(parseInt($(e).css('top').replace('px','')) + y - posicaoInicial['y'] >=  0)
+        $(e).css('top',`+=${y - posicaoInicial['y']}px`);
 }
 
-// Função para exibir as coordenadas do mouse no console
-function logMouseCoordinates() {
-    console.log('left: ' + getMouseCoordinates(lastMouseEvent,'x') + ', top: ' + getMouseCoordinates(lastMouseEvent,'y'));
-}
-
-// capture the last mouse pos
-let lastMouseEvent;
-document.addEventListener('mousemove', function(event) {
-    lastMouseEvent = event;
-});
-
-// show the mouse cord on the cosole every tick set
+/* show the mouse cord on the cosole every tick set */
 /* setInterval(logMouseCoordinates, 100); */
 
 /* initiate and display desktop */
@@ -164,7 +165,7 @@ function System(){
                 }
                 /* add the final app into the desktop workspace */
                 $('#desktop').append(`
-                    <app onmouseover="highlight(this)" onmouseout="removeHighlight(this)" ondblclick="appOpen('${item[0]}');" id="${item[1]['app_id']}" class="close">
+                    <app onmouseover="highlight(this)" onmouseout="removeHighlight(this)" ondblclick="appOpen('${item[0]}');" id="${item[1]['app_id']}" class="close draggable">
                         <div class="app_display">
                             <div class="app_icon" style="--DesktopAppImage:url('../program_files/${item[0]}${item[1]['app_image']}');"></div>
                             <font class="close">${appName}</font>
@@ -176,9 +177,9 @@ function System(){
         });
     }); 
 
-    // Manipulador de clique para o botão
+    /* Manipulador de clique para o botão */
     $("#abrirLink").click(function() {
-        var parteDaString = "pasta/nome.php"; // Substitua com sua parte de string
+        var parteDaString = "pasta/nome.php"; /* Substitua com sua parte de string */
         abrirLinkEmNovaGuia(parteDaString);
     });
     
@@ -201,16 +202,16 @@ function System(){
         return {word:text, width: width+12, height: height };
     }
 
-    // Remove a classe quando qualquer outra parte do documento é clicada
+    /* Remove a classe quando qualquer outra parte do documento é clicada */
     $(document).on('click', function(event){
 
         if ($(event.target).closest('app').length == 0) {
-        // Se o clique não ocorreu dentro do elemento, remove a classe
+        /* Se o clique não ocorreu dentro do elemento, remove a classe */
             $('app').removeClass('mouseClicked').addClass('close');
         }
 
         if ($(event.target).closest('app').length == 1) {
-        // Se o clique não ocorreu dentro do elemento, remove a classe
+        /* Se o clique não ocorreu dentro do elemento, remove a classe */
             $('app').removeClass('mouseClicked').addClass('close');
             $($(event.target).closest('app')[0]).addClass('mouseClicked').removeClass('close');
         }
