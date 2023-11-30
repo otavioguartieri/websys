@@ -94,6 +94,12 @@ function randomNum(limit){
 /* show the mouse cord on the cosole every tick set */
 /* setInterval(logMouseCoordinates, 100); */
 
+/* calculate the desktop area/spaces */
+
+/* function apparea(){
+    console.log($('#desktop').width());
+} */
+
 /* initiate and display desktop */
 function System(){
 
@@ -140,7 +146,7 @@ function System(){
                 }
                 /* add the final app into the desktop workspace */
                 $('#desktop').append(`
-                    <app onmouseover="highlight(this)" onmouseout="removeHighlight(this)" ondblclick="appOpen('${item[0]}');" id="${item[1]['app_id']}" class="close draggable">
+                    <app onmouseover="highlight(this)" onmouseout="removeHighlight(this)" ondblclick="appOpen('${item[0]}');" id="${item[1]['app_id']}" class="close">
                         <div class="app_display">
                             <div class="app_icon" style="--DesktopAppImage:url('../program_files/${item[0]}${item[1]['app_image']}');"></div>
                             <font class="close">${appName}</font>
