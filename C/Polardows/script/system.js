@@ -100,6 +100,21 @@ function randomNum(limit){
     console.log($('#desktop').width());
 } */
 
+function poltab(){
+    $('#desktop').append(`
+        <div class="poltab draggable">
+            <div class="poltab_menu">
+                <div class="poltab_menu_btn minimize" style="--btnbg:url('../polardows/systemicons/line-mark.png');"></div>
+                <div class="poltab_menu_btn fullscrn" style="--btnbg:url('../polardows/systemicons/resize-mark.png');"></div>
+                <div class="poltab_menu_btn close" style="--btnbg:url('../polardows/systemicons/x-mark.png');"></div>
+            </div>
+            <div class="poltab_content">
+
+            </div>
+        </div>
+    `);
+}
+
 /* initiate and display desktop */
 function System(){
 
