@@ -1,5 +1,5 @@
 <?php
-    $path = rtrim($_SERVER['REQUEST_URI'],'app.php');
+    include_once 'path.php';
 ?>
 <html>
 <head>

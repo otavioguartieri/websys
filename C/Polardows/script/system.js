@@ -2,16 +2,20 @@ setTimeout(function(){
     System();
 },1000);
 
+/* apply highlight on system app */
 function highlight(e) {
     e.classList.add('mouseOver');
 }
-
+/* apply highlight on system app */
 function removeHighlight(e) {
     e.classList.remove('mouseOver');
 }
 
-function appOpen(path) {
-    window.open(`${window.location.href.replace(/\/[^\/]*$/, '')}/C/program_files/${path}/app.php`, "_blank");
+/* opens system app */
+function appOpen(path,imagepath) {
+    poltab(path,imagepath);
+    /* abrir em uma nova guia */
+    /* window.open(`${window.location.href.replace(/\/[^\/]*$/, '')}/C/program_files/${path}/app.php`, "_blank"); */
 }
 
 /* salvar alteração de guia do usuario */
@@ -41,21 +45,28 @@ function acao() {
     }
 } */
 
+/* remove the element from document */
+function polremove(e){
+    $(e).remove();
+}
+
+/* set the localstorage item with the name and value */
 function setItem(name,value){
     localStorage.setItem(name, value);
 }
+
+/* remove the localstorage item by the name */
 function removeItem(name){
     localStorage.removeItem(name);
 }
+
+/* get the localstorage item value by the name */
 function getItem(name){
     return localStorage.getItem(name);
 }
-function switchtab(tab){
-    window.location.href = tab;
-}
 
+/* generate ramdom word by length */
 const characters_generatorWords ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-const characters_generatorNums ='0123456789';
 function generateStringWords(length) {
     let result = '';
     const charactersLength = characters_generatorWords.length;
@@ -66,6 +77,8 @@ function generateStringWords(length) {
     return result;
 }
 
+/* generate ramdom number by length */
+const characters_generatorNums ='0123456789';
 function generateStringNums(length) {
     let result = '';
     const charactersLength = characters_generatorNums.length;
@@ -76,6 +89,7 @@ function generateStringNums(length) {
     return result;
 }
 
+/* get the actual timestamp */
 function getdateClean(){
     var date = new Date;
     return date.getDate()+
@@ -100,16 +114,16 @@ function randomNum(limit){
     console.log($('#desktop').width());
 } */
 
-function poltab(){
+function poltab(path,app_height=800,app_width=800){
     $('#desktop').append(`
         <div class="poltab draggable">
             <div class="poltab_menu">
                 <div class="poltab_menu_btn minimize" style="--btnbg:url('../polardows/systemicons/line-mark.png');"></div>
                 <div class="poltab_menu_btn fullscrn" style="--btnbg:url('../polardows/systemicons/resize-mark.png');"></div>
-                <div class="poltab_menu_btn close" style="--btnbg:url('../polardows/systemicons/x-mark.png');"></div>
+                <div class="poltab_menu_btn close" onmouseup="polremove($(this).parent().parent());" style="--btnbg:url('../polardows/systemicons/x-mark.png');"></div>
             </div>
             <div class="poltab_content">
-
+                <iframe src="C/program_files/${path}/app.php" width="${app_width}" height="${app_height}" frameborder="0"></iframe>
             </div>
         </div>
     `);
@@ -161,7 +175,7 @@ function System(){
                 }
                 /* add the final app into the desktop workspace */
                 $('#desktop').append(`
-                    <app onmouseover="highlight(this)" onmouseout="removeHighlight(this)" ondblclick="appOpen('${item[0]}');" id="${item[1]['app_id']}" class="close">
+                    <app onmouseover="highlight(this)" onmouseout="removeHighlight(this)" ondblclick="poltab('${item[0]}','${item[1]["app_height"]}','${item[1]["app_width"]}');" id="${item[1]['app_id']}" class="close">
                         <div class="app_display">
                             <div class="app_icon" style="--DesktopAppImage:url('../program_files/${item[0]}${item[1]['app_image']}');"></div>
                             <font class="close">${appName}</font>
