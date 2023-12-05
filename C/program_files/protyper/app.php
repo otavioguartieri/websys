@@ -1,39 +1,72 @@
 <?php include_once '../../polardows/desktop/head.php' ; ?>
 <style>
+    :root{
+        --hudsizew:calc(100% / 3);
+        --hudsizeh:100%;
+        --typersizew:calc(calc(100% / 3)*2);
+        --typersizeh:100%;
+    }
+
     @font-face {
         font-family: CommodorePixelized;
         src: url(<?php echo $path ?>/appdata/font/CommodorePixelized.ttf)
     }
     * { font-family: "CommodorePixelized", sans-serif; margin: 0;user-select: none; }
-    .screen { margin:auto;margin-bottom:4px;display:flex;}
+    .screen {
+        aspect-ratio: 3/2 !important;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        max-width: 100%;
+        max-height: 100%;
+    }
+    .case {
+        max-width: 100%;
+        max-height: 100%;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #hud{
+        aspect-ratio: 1/2 !important;
+        height: var(--hudsizeh);
+        max-width:100%;
+        max-height:100%;
+        font-size:6vmin;
+        background: #ddd;
+        display:flex;
+        flex-direction:column;
+    }
     #typer{ 
+        aspect-ratio: 1/1 !important;
         background: green; 
-        font-size: 6vw; 
-        width:420px;
-        height:420px;
+        font-size: 11vmin;     
+        /* width:var(--typersizew); */
+        height:var(--typersizeh);
+        max-width:100%;
+        max-height:100%;
     }
-    @media(min-width: 600px) {
-        #typer{font-size: 46px; }
-    }
-    .typer_fill { width: 100%; height: 70px; display: flex; }
-    .typer_fill div { background: white; width: 70px; display: flex; align-items: center; justify-content: center; height: 100%; font-stretch: normal; }
+    .typer_fill { width: 100%; height: calc(100% / 6); display: flex; }
+    .typer_fill div { background: white; width: calc(100% / 6); display: flex; align-items: center; justify-content: center; height: 100%; font-stretch: normal; }
     .removed { filter:opacity(0); }
-    .hud{    width: 200px;
-    background: #ddd;display:flex;flex-direction:column;}
 </style>
 <?php include_once '../../polardows/desktop/init.php' ; ?>
-<div class="screen">
-    <div id="typer">
-        <div class="typer_fill" id="fileira_1"></div>
-        <div class="typer_fill" id="fileira_2"></div>
-        <div class="typer_fill" id="fileira_3"></div>
-        <div class="typer_fill" id="fileira_4"></div>
-        <div class="typer_fill" id="fileira_5"></div>
-        <div class="typer_fill" id="fileira_6"></div>
-    </div>
-    <div class="hud">
-        <div class="highscore">MAIOR PONTUAÇÃO<br><span></span></div><br><br>
-        <div class="score">PONTUAÇÂO ATUAL<br><span></span></div>
+<div class="case">
+    <div class="screen">
+        <div id="typer">
+            <div class="typer_fill" id="fileira_1"></div>
+            <div class="typer_fill" id="fileira_2"></div>
+            <div class="typer_fill" id="fileira_3"></div>
+            <div class="typer_fill" id="fileira_4"></div>
+            <div class="typer_fill" id="fileira_5"></div>
+            <div class="typer_fill" id="fileira_6"></div>
+        </div>
+        <div id="hud">
+            <div class="highscore">MAIOR PONTUAÇÃO<br><span></span></div><br><br>
+            <div class="score">PONTUAÇÂO ATUAL<br><span></span></div>
+        </div>
     </div>
 </div>
 <?php include_once '../../polardows/desktop/end.php' ; ?>
@@ -49,16 +82,6 @@
 
         document.title="Monkey Typer!!";
 
-        setInterval(() => {
-            if($("#typer").height() > $("#typer").width()){
-                $("#typer").css("width", 'calc(90vh - 6px)');
-                $("#typer").css("height", $("#typer").width());
-            }
-            if($("#typer").width() > $("#typer").height()){
-                $("#typer").css("height", 'calc(90vh - 6px)');
-                $("#typer").css("width", $("#typer").height());
-            }
-        }, 10);
 
         addEventListener("keyup", (event) => {
             if (event.key == 0 || event.key == 1)
