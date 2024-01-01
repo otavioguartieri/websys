@@ -7,6 +7,11 @@
     --DesktopAppSize: 72px;
     --DesktopAppImageSize: calc(var(--DesktopAppSize) / 1.8);
     --DesktopAppImage: url('');
+    --PoltabMenuBtnWidth: 32px;
+    --PoltabMenuHeight: 26px;
+    --PoltabZIndex: 3;
+    --AppZIndex: 2;
+    --TaskbarZIndex: 5;
 }
 body, html{
     margin:0px;
@@ -37,6 +42,7 @@ body, html{
     height: var(--TaskbarHeight);
     background-color: var(--TaskbarColor);
     border-top: 1px solid var(--TaskbarBorderColor);
+    z-index: var(--TaskbarZIndex);
 }
 
 app{
@@ -44,7 +50,7 @@ app{
     width: var(--DesktopAppSize);
     min-height: var(--DesktopAppSize);
     min-width: var(--DesktopAppSize);
-    z-index: 1;
+    z-index: var(--AppZIndex);
     padding: 1px;
     cursor: default;
     user-select: none;
@@ -121,15 +127,21 @@ app.mouseOver .app_display{
     position: absolute;
     left: 200px;
     top: 200px;
+    z-index: var(--PoltabZIndex);
     background: #151515;
     border-radius: 6px;
     border: 1px solid #000;
     box-sizing: border-box;
+    transition:.15s;
+    /* overflow: hidden; */
+}
+.poltab_content{
+    border-radius: 0 0 6px 6px;
     overflow: hidden;
 }
 .poltab .poltab_menu{
     width: 100%;
-    height: 26px;
+    height: var(--PoltabMenuHeight);
     border-radius: 6px 6px 0 0;
     background-color: #242424;
     border-bottom: 1px solid #000;
@@ -139,14 +151,14 @@ app.mouseOver .app_display{
     justify-content: end;
 }
 .poltab .poltab_menu_btn {
-    width: 32px;
+    width: var(--PoltabMenuBtnWidth);
     height: 28px;
     background-color: #dbdbdb;
     /* background-color: #242424; no inversion */
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: .2s;
+    transition: .12s;
     background-image: var(--btnbg);
     background-position: center;
     background-size: 12px;
@@ -163,6 +175,43 @@ app.mouseOver .app_display{
     background-color: #17eedc;
     /* background-color: #e81123; no inversion */
 }
-.draggable{
-    position: absolute;
+.poltab .poltab_menu_btn.close:hover:active{
+    background-color: #67e7dd;
+    /* background-color: #e81123; no inversion */
+}
+.poltab_menu_blankspace{
+    display: flex;
+    height: 100%;
+    width: calc(100% - calc(var(--PoltabMenuBtnWidth) * 3));
+}
+.poltab_menu_app-icon{
+    background-image: var(--bgicon);
+    width: calc(var(--PoltabMenuHeight) - 1px);
+    height: calc(var(--PoltabMenuHeight) - 1px);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.poltab_menu_app-name{
+    color: #ddd;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    padding: 0 6px;
+    font-size: 13px;
+}
+.tab_w_resize_r{
+    width: 4px; 
+    height: 100%; 
+    position: absolute; 
+    right: -2px; 
+    cursor: w-resize; 
+}
+.tab_w_resize_l{
+    width: 4px; 
+    height: 100%; 
+    position: absolute; 
+    left: -2px;
+    cursor: w-resize; 
 }
