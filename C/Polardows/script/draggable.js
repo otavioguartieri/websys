@@ -1,7 +1,7 @@
 setInterval(function(){
     $('.draggable').not('[draggable]').each(function() {
-        $(this).attr('ondragstart', `calcularPosicaoMouseStart(event);${$(this).attr('ondragstart') || ''}`);
-        $(this).attr('ondrag', `calcularPosicaoMouse(event,$(this).parent().parent());${$(this).attr('ondragstart') || ''}`);
+        $(this).attr('ondragstart', `calcularPosicaoMouseStart(event);`);
+        $(this).attr('ondrag', `calcularPosicaoMouse(event,$(this).parent().parent());`);
         $(this).attr('draggable', `true`);
     });
 },100);

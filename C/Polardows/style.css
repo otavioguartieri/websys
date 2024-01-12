@@ -132,7 +132,6 @@ app.mouseOver .app_display{
     border-radius: 6px;
     border: 1px solid #000;
     box-sizing: border-box;
-    transition:.15s;
     /* overflow: hidden; */
 }
 .poltab_content{
