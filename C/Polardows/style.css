@@ -132,6 +132,7 @@ app.mouseOver .app_display{
     border-radius: 6px;
     border: 1px solid #000;
     box-sizing: border-box;
+    box-shadow: 0px 0px 19px -2px #00000066;
     /* overflow: hidden; */
 }
 .poltab_content{
@@ -200,17 +201,58 @@ app.mouseOver .app_display{
     padding: 0 6px;
     font-size: 13px;
 }
-.tab_w_resize_r{
-    width: 4px; 
-    height: 100%; 
+.tab_resize{
     position: absolute; 
-    right: -2px; 
+}
+.tab_resize.h_r{
+    width: 4px; 
+    height: 100%;
+    right: -4px; 
     cursor: w-resize; 
 }
-.tab_w_resize_l{
+.tab_resize.h_l{
     width: 4px; 
-    height: 100%; 
-    position: absolute; 
-    left: -2px;
+    height: 100%;
+    left: -4px;
     cursor: w-resize; 
+}
+.tab_resize.v_t{
+    width: 100%;
+    height: 4px;
+    top: -4px;
+    cursor: n-resize; 
+}
+.tab_resize.v_b{
+    width: 100%;
+    height: 4px; 
+    bottom: -4px;
+    cursor: n-resize; 
+}
+.tab_resize.z_tl{
+    width: 8px;
+    height: 8px; 
+    top: -4px;
+    left: -4px;
+    cursor: se-resize; 
+}
+.tab_resize.z_tr{
+    width: 8px;
+    height: 8px; 
+    top: -4px;
+    right: -4px;
+    cursor: sw-resize; 
+}
+.tab_resize.z_bl{
+    width: 8px;
+    height: 8px; 
+    bottom: -4px;
+    left: -4px;
+    cursor: sw-resize; 
+}
+.tab_resize.z_br{
+    width: 8px;
+    height: 8px; 
+    bottom: -4px;
+    right: -4px;
+    cursor: se-resize;  
 }
