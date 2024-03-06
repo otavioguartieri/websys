@@ -1,5 +1,8 @@
 <?php include_once '../../polardows/desktop/head.php' ; ?>
 <style>
+    html{
+        overflow: hidden;
+    }
     :root{
         --hudsizew:calc(100% / 3);
         --hudsizeh:100%;

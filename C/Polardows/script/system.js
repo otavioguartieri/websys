@@ -127,14 +127,14 @@ function poltab(path,app_height=800,app_width=800,app_name,app_image){
     $('#desktop').append(`
         <div class="poltab">
 
-            <div class="tab_resize h_r"></div>
-            <div class="tab_resize h_l"></div>
-            <div class="tab_resize v_t"></div>
-            <div class="tab_resize v_b"></div>
             <div class="tab_resize z_tl"></div>
             <div class="tab_resize z_tr"></div>
             <div class="tab_resize z_bl"></div>
             <div class="tab_resize z_br"></div>
+            <div class="tab_resize h_r"></div>
+            <div class="tab_resize h_l"></div>
+            <div class="tab_resize v_t"></div>
+            <div class="tab_resize v_b"></div>
 
             <div class="poltab_menu">
                 <div class="poltab_menu_blankspace draggable">
