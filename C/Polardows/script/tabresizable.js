@@ -1,4 +1,5 @@
 setInterval(function(){
+    $('.tab_resize').removeClass('blocked')
     $('.tab_resize').not(['onmousedown']).each(function() {
         $(this).attr('onmousedown', `tabResizeMouseStart(event,$(this).parent());`);
         $(this).attr('onmouseup', `tabResizeMouseStop();`);

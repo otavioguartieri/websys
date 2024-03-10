@@ -1,6 +1,8 @@
 :root{
+    --SysDefaultColor: #1e6a29;
+    --SysGrayColor: #909aa5;
     --TaskbarHeight: 50px;
-    --TaskbarColor: #585858;
+    --TaskbarColor: #12283f;
     --TaskbarBorderColor: #dededc;
     --DesktopHeight: calc(100% - var(--TaskbarHeight));
     --DesktopColor: #edece7;
@@ -211,6 +213,9 @@ app.mouseOver .app_display{
     position: absolute;
     z-index: var(--PoltabResizeZIndex);
 }
+.tab_resize.blocked{
+    display: none;
+}
 .tab_resize.h_r{
     width: 12px; 
     height: 100%;
@@ -266,4 +271,50 @@ app.mouseOver .app_display{
     bottom: -10px;
     right: -10px;
     cursor: se-resize;  
+}
+#taskbar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.taskbar_app{
+    padding: 7px;
+    border-radius: 5px;
+    margin: 0 2px;
+    transition: 200ms;
+    position: relative;
+    margin-bottom: 1px;
+    background-color: #ffffff00;
+    border: 1px solid #ffffff00;
+}
+.taskbar_app.open,.taskbar_app.preview{
+    background-color: #ffffff14;
+    border: 1px solid #ffffff0a;
+    border-top-color: #ffffff1f;
+    border-left-color: #ffffff1f;
+}
+.taskbar_app .taskbar_app-status{
+    position: absolute;
+    bottom: 1px;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, 0);
+    background-color: var(--SysGrayColor);
+    border-radius: 10000px;
+    height: 3px;
+    width: 8px;
+    transition: inherit;
+}
+.taskbar_app.open .taskbar_app-status{
+    background-color: var(--SysDefaultColor);
+    height: 3px;
+    width: 20px;
+}
+.taskbar_app-icon{
+    background-image: var(--bgicon);
+    width: calc(var(--TaskbarHeight) - 25px);
+    height: calc(var(--TaskbarHeight) - 25px);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }

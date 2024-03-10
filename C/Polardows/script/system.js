@@ -1,6 +1,6 @@
-setTimeout(function(){
+$(document).ready(()=>{
     System();
-},1000);
+});
 
 /* apply highlight on system app */
 function highlight(e) {
@@ -49,14 +49,12 @@ function acao() {
 /* tab close animation */
 function poltabremove(e){
     setTimeout(() => {
-        $(e).parent().parent().attr('style',`transform: scale(0.9);filter:opacity(0);${$(e).parent().parent().attr('style') || ''}`);
+        $(`.poltab[app_id='${e}']`).attr('style',`transform: scale(0.9);filter:opacity(0);${$(`.poltab[app_id='${e}']`).attr('style') || ''}`);
     }, 50);
     setTimeout(() => {
-        $(e).parent().parent().remove();
+        $(`.poltab[app_id='${e}']`).remove();
     }, 1000);
-}
-function polremove(e){
-    $(e).remove();
+    TaskbarRemove(`${e}`);
 }
 
 /* set the localstorage item with the name and value */
@@ -123,18 +121,18 @@ function randomNum(limit){
     console.log($('#desktop').width());
 } */
 /* tab open function */
-function poltab(path,app_height=800,app_width=800,app_name,app_image){
+function poltab(app_id,path,app_height=800,app_width=800,app_name,app_image){
     $('#desktop').append(`
-        <div class="poltab">
+        <div class="poltab" app_id="${app_id}">
 
-            <div class="tab_resize z_tl"></div>
-            <div class="tab_resize z_tr"></div>
-            <div class="tab_resize z_bl"></div>
-            <div class="tab_resize z_br"></div>
-            <div class="tab_resize h_r"></div>
-            <div class="tab_resize h_l"></div>
-            <div class="tab_resize v_t"></div>
-            <div class="tab_resize v_b"></div>
+            <div class="tab_resize blocked z_tl"></div>
+            <div class="tab_resize blocked z_tr"></div>
+            <div class="tab_resize blocked z_bl"></div>
+            <div class="tab_resize blocked z_br"></div>
+            <div class="tab_resize blocked h_r"></div>
+            <div class="tab_resize blocked h_l"></div>
+            <div class="tab_resize blocked v_t"></div>
+            <div class="tab_resize blocked v_b"></div>
 
             <div class="poltab_menu">
                 <div class="poltab_menu_blankspace draggable">
@@ -143,13 +141,14 @@ function poltab(path,app_height=800,app_width=800,app_name,app_image){
                 </div>
                 <div class="poltab_menu_btn minimize" style="--btnbg:url('../polardows/systemicons/line-mark.png');"></div>
                 <div class="poltab_menu_btn fullscrn" style="--btnbg:url('../polardows/systemicons/resize-mark.png');"></div>
-                <div class="poltab_menu_btn close" onmouseup="poltabremove($(this));" style="--btnbg:url('../polardows/systemicons/x-mark.png');"></div>
+                <div class="poltab_menu_btn close" onmouseup="poltabremove('${app_id}');" style="--btnbg:url('../polardows/systemicons/x-mark.png');"></div>
             </div>
             <div class="poltab_content">
                 <iframe src="C/program_files/${path}/app.php" width="${app_width}" height="${app_height}" frameborder="0"></iframe>
             </div>
         </div>
     `);
+    TaskbarAdd(`${app_id}`,`${app_name}`,`../program_files/${app_image}`);
 }
 
 /* initiate and display desktop */
@@ -198,7 +197,7 @@ function System(){
                 }
                 /* add the final app into the desktop workspace */
                 $('#desktop').append(`
-                    <app onmouseover="highlight(this)" onmouseout="removeHighlight(this)" ondblclick="poltab('${item[0]}','${item[1]["app_height"]}','${item[1]["app_width"]}', '${appName}', '${item[0]}${item[1]['app_image']}');" id="${item[1]['app_id']}" class="close">
+                    <app onmouseover="highlight(this)" onmouseout="removeHighlight(this)" ondblclick="poltab('${item[1]['app_id']}','${item[0]}','${item[1]["app_height"]}','${item[1]["app_width"]}', '${appName}', '${item[0]}${item[1]['app_image']}');" id="${item[1]['app_id']}" class="close">
                         <div class="app_display">
                             <div class="app_icon" style="--DesktopAppImage:url('../program_files/${item[0]}${item[1]['app_image']}');"></div>
                             <font class="close">${appName}</font>
