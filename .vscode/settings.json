@@ -1,5 +1,6 @@
 {
     "conventionalCommits.scopes": [
-        "taskbar.js"
+        "taskbar.js",
+        "tableresize.js"
     ]
 }
