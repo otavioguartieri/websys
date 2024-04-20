@@ -1,11 +1,11 @@
 :root{
     --SysDefaultColor: #1e6a29;
     --SysGrayColor: #909aa5;
-    --TaskbarHeight: 50px;
+    --TaskbarHeight: 46px;
     --TaskbarColor: #12283f;
     --TaskbarBorderColor: #dededc;
-    --DesktopHeight: calc(100% - var(--TaskbarHeight));
-    --DesktopColor: #edece7;
+    --DesktopHeight: calc(100%);
+    --DesktopColor: #081830;
     --DesktopAppSize: 72px;
     --DesktopAppImageSize: calc(var(--DesktopAppSize) / 1.8);
     --DesktopAppImage: url('');
@@ -14,6 +14,7 @@
     --PoltabZIndex: 3;
     --PoltabResizeZIndex: 4;
     --PoltabResizeCornerZIndex: 5;
+    --PoltabMinifiedTransitionTime:130ms;
     --AppZIndex: 2;
     --TaskbarZIndex: 5;
 }
@@ -41,15 +42,23 @@ body, html{
     display: flex;
     width: calc(100% - 2px);
     height: var(--DesktopHeight);
-    background-color: var(--DesktopColor);
+    background-image: url('systemimages/windows-11-dark-mode-blue-stock-official-3840x2400-5630.jpg');
+    background-size: cover;
+    background-position:bottom ;
     padding: 1px;
 }
 #screen #taskbar{
     width: 100%;
     height: var(--TaskbarHeight);
-    background-color: var(--TaskbarColor);
-    border-top: 1px solid var(--TaskbarBorderColor);
     z-index: var(--TaskbarZIndex);
+    position: absolute;
+    bottom: 0;
+
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 app{
@@ -108,12 +117,12 @@ app.mouseClicked{
 }
 app.mouseClicked .app_display{
     height: auto;
-    background-color: #0000000a;
-    border: 1px solid #0000001f;
+    background-color: #ffffff0a;
+    border: 1px solid #ffffff1f;
 }
 app.mouseOver .app_display{
-    background-color: #00000004;
-    border: 1px solid #0000000f;
+    background-color: #ffffff04;
+    border: 1px solid #ffffff0f;
 }
 
 .wintest{
@@ -141,6 +150,18 @@ app.mouseOver .app_display{
     box-sizing: border-box;
     box-shadow: 0px 0px 19px -2px #00000066;
     /* overflow: hidden; */
+    transform: translateY(0) scale(1);
+    filter: opacity(1);
+}
+.poltab.transition{
+    transition: var(--PoltabMinifiedTransitionTime);
+}
+.poltab.minified{
+    transform: translateY(50%) scale(0.1);
+    filter: opacity(0);
+}
+.poltab.invisible{
+    display: none;
 }
 .poltab_content{
     border-radius: 0 0 6px 6px;
@@ -227,8 +248,8 @@ app.mouseOver .app_display{
     cursor: w-resize; 
 }
 .tab_resize.h_r.active{
-    width: 40px; 
-    right:-20px;
+    width: 300px; 
+    right:-120px;
 }
 .tab_resize.h_l{
     width: 4px; 
@@ -237,8 +258,8 @@ app.mouseOver .app_display{
     cursor: w-resize; 
 }
 .tab_resize.h_l.active{
-    width: 40px; 
-    left:-20px;
+    width: 300px; 
+    left:-120px;
 }
 .tab_resize.v_t{
     width: 100%;
@@ -247,8 +268,8 @@ app.mouseOver .app_display{
     cursor: n-resize; 
 }
 .tab_resize.v_t.active{
-    height: 40px;
-    top:-20px;
+    height: 200px;
+    top:-80px;
 }
 .tab_resize.v_b{
     width: 100%;
@@ -257,8 +278,8 @@ app.mouseOver .app_display{
     cursor: n-resize; 
 }
 .tab_resize.v_b.active{
-    height: 40px;
-    bottom:-20px;
+    height: 200px;
+    bottom:-80px;
 }
 .tab_resize.z_tl{
     z-index: var(--PoltabResizeCornerZIndex);
@@ -269,10 +290,10 @@ app.mouseOver .app_display{
     cursor: se-resize; 
 }
 .tab_resize.z_tl.active{    
-    width: 60px;
-    height: 60px;
-    top: -30px;
-    left: -30px;
+    width: 260px;
+    height: 260px;
+    top: -80px;
+    left: -80px;
 }
 .tab_resize.z_tr{
     z-index: var(--PoltabResizeCornerZIndex);
@@ -283,10 +304,10 @@ app.mouseOver .app_display{
     cursor: sw-resize; 
 }
 .tab_resize.z_tr.active{    
-    width: 60px;
-    height: 60px;
-    top: -30px;
-    right: -30px;
+    width: 260px;
+    height: 260px;
+    top: -80px;
+    right: -80px;
 }
 .tab_resize.z_bl{
     z-index: var(--PoltabResizeCornerZIndex);
@@ -297,10 +318,10 @@ app.mouseOver .app_display{
     cursor: sw-resize; 
 }
 .tab_resize.z_bl.active{    
-    width: 60px;
-    height: 60px;
-    bottom: -30px;
-    left: -30px;
+    width: 260px;
+    height: 260px;
+    bottom: -80px;
+    left: -80px;
 }
 .tab_resize.z_br{
     z-index: var(--PoltabResizeCornerZIndex);
@@ -311,10 +332,10 @@ app.mouseOver .app_display{
     cursor: se-resize;  
 }
 .tab_resize.z_br.active{    
-    width: 60px;
-    height: 60px;
-    bottom: -30px;
-    right: -30px;
+    width: 260px;
+    height: 260px;
+    bottom: -80px;
+    right: -80px;
 }
 #taskbar{
     display: flex;
@@ -331,12 +352,6 @@ app.mouseOver .app_display{
     background-color: #ffffff00;
     border: 1px solid #ffffff00;
 }
-.taskbar_app.open,.taskbar_app.preview{
-    background-color: #ffffff14;
-    border: 1px solid #ffffff0a;
-    border-top-color: #ffffff1f;
-    border-left-color: #ffffff1f;
-}
 .taskbar_app .taskbar_app-status{
     position: absolute;
     bottom: 1px;
@@ -346,13 +361,19 @@ app.mouseOver .app_display{
     background-color: var(--SysGrayColor);
     border-radius: 10000px;
     height: 3px;
-    width: 8px;
+    width: 7px;
     transition: inherit;
 }
 .taskbar_app.open .taskbar_app-status{
-    background-color: var(--SysDefaultColor);
+    /* background-color: var(--SysDefaultColor); */
     height: 3px;
-    width: 20px;
+    width: 16px;
+}
+.taskbar_app.open,.taskbar_app.preview{
+    background-color: #ffffff14;
+    border: 1px solid #ffffff0a;
+    border-top-color: #ffffff1f;
+    border-left-color: #ffffff1f;
 }
 .taskbar_app-icon{
     background-image: var(--bgicon);

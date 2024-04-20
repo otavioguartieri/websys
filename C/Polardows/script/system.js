@@ -1,5 +1,30 @@
 $(document).ready(()=>{
     System();
+    /* $('#desktop').append(`
+        <div class="poltab" app_id="123123123">
+
+            <div class="tab_resize blocked z_tl"></div>
+            <div class="tab_resize blocked z_tr"></div>
+            <div class="tab_resize blocked z_bl"></div>
+            <div class="tab_resize blocked z_br"></div>
+            <div class="tab_resize blocked h_r"></div>
+            <div class="tab_resize blocked h_l"></div>
+            <div class="tab_resize blocked v_t"></div>
+            <div class="tab_resize blocked v_b"></div>
+
+            <div class="poltab_menu">
+                <div class="poltab_menu_blankspace draggable">
+                    <div class="poltab_menu_app-name">123123123</div>
+                </div>
+                <div class="poltab_menu_btn minimize" onmouseup="poltabminimize('123123123');" style="--btnbg:url('../polardows/systemicons/line-mark.png');"></div>
+                <div class="poltab_menu_btn fullscrn" style="--btnbg:url('../polardows/systemicons/resize-mark.png');"></div>
+                <div class="poltab_menu_btn close" onmouseup="poltabremove('123123123');" style="--btnbg:url('../polardows/systemicons/x-mark.png');"></div>
+            </div>
+            <div class="poltab_content">
+                <iframe id="EmbedderContainer" src="https://embedder.net/e/movie?imdb=tt11379322" width="100%" height="100%" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+            </div>
+        </div>
+    `); */
 });
 
 /* apply highlight on system app */
@@ -49,12 +74,19 @@ function acao() {
 /* tab close animation */
 function poltabremove(e){
     setTimeout(() => {
-        $(`.poltab[app_id='${e}']`).attr('style',`transform: scale(0.9);filter:opacity(0);${$(`.poltab[app_id='${e}']`).attr('style') || ''}`);
+        $(`.poltab[app_id='${e}']`).addClass('transition').addClass('minified');
     }, 50);
     setTimeout(() => {
         $(`.poltab[app_id='${e}']`).remove();
-    }, 1000);
-    TaskbarRemove(`${e}`);
+        TaskbarRemove(`${e}`);
+    }, parseFloat($(':root').css('--PoltabMinifiedTransitionTime').replace(/(^0-9)/gi,'')));
+    
+}
+function poltabminimize(e){
+    $(`.poltab[app_id='${e}']`).addClass('transition').addClass('minified');
+    setTimeout(() => {
+        $(`.poltab[app_id='${e}']`).addClass('invisible');
+    }, parseFloat($(':root').css('--PoltabMinifiedTransitionTime').replace(/(^0-9)/gi,'')));
 }
 
 /* set the localstorage item with the name and value */
@@ -123,7 +155,7 @@ function randomNum(limit){
 /* tab open function */
 function poltab(app_id,path,app_height=800,app_width=800,app_name,app_image){
     $('#desktop').append(`
-        <div class="poltab" app_id="${app_id}">
+        <div class="poltab transition minified" app_id="${app_id}">
 
             <div class="tab_resize blocked z_tl"></div>
             <div class="tab_resize blocked z_tr"></div>
@@ -139,7 +171,7 @@ function poltab(app_id,path,app_height=800,app_width=800,app_name,app_image){
                     <div class="poltab_menu_app-icon" style="--bgicon:url('../program_files/${app_image}');"></div>
                     <div class="poltab_menu_app-name">${app_name}</div>
                 </div>
-                <div class="poltab_menu_btn minimize" style="--btnbg:url('../polardows/systemicons/line-mark.png');"></div>
+                <div class="poltab_menu_btn minimize" onmouseup="poltabminimize('${app_id}');" style="--btnbg:url('../polardows/systemicons/line-mark.png');"></div>
                 <div class="poltab_menu_btn fullscrn" style="--btnbg:url('../polardows/systemicons/resize-mark.png');"></div>
                 <div class="poltab_menu_btn close" onmouseup="poltabremove('${app_id}');" style="--btnbg:url('../polardows/systemicons/x-mark.png');"></div>
             </div>
@@ -148,6 +180,12 @@ function poltab(app_id,path,app_height=800,app_width=800,app_name,app_image){
             </div>
         </div>
     `);
+    setTimeout(() => {
+        $(`.poltab[app_id="${app_id}"]`).removeClass('minified');
+        setTimeout(() => {
+            $(`.poltab[app_id="${app_id}"]`).removeClass('transition');
+        }, parseFloat($(':root').css('--PoltabMinifiedTransitionTime').replace(/(^0-9)/gi,'')));
+    }, 300);
     TaskbarAdd(`${app_id}`,`${app_name}`,`../program_files/${app_image}`);
 }
 
