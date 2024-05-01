@@ -1,4 +1,4 @@
-<?php include_once '../../polardows/desktop/head.php' ; ?>
+<?php include_once '../../Polardows/desktop/head.php' ; ?>
 <style>
     *{user-select:none;
         margin:0;}
@@ -14,7 +14,7 @@
 	background-color: #000;
 }
 </style>
-<?php include_once '../../polardows/desktop/init.php' ; ?>
+<?php include_once '../../Polardows/desktop/init.php' ; ?>
 <div class="container">
     <video autoplay="true" id="videoElement">
         
@@ -23,7 +23,7 @@
     
 </div>
 <canvas style="display:none;"></canvas>
-<?php include_once '../../polardows/desktop/end.php' ; ?>
+<?php include_once '../../Polardows/desktop/end.php' ; ?>
 <script>
     $(window).on("load", function(){
         var video = document.querySelector("#videoElement");
@@ -61,4 +61,4 @@
         link.click();
     }
 </script>
-<?php include_once '../../polardows/desktop/bottom.php' ; ?>
+<?php include_once '../../Polardows/desktop/bottom.php' ; ?>

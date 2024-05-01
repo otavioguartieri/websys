@@ -1,4 +1,4 @@
-<?php include_once '../../polardows/desktop/head.php' ; ?>
+<?php include_once '../../Polardows/desktop/head.php' ; ?>
 
 <!-- tetris grid: 20x10 -->
 <!-- each block: 25px  -->
@@ -49,14 +49,14 @@
         box-sizing: border-box;
     }
 </style>
-<?php include_once '../../polardows/desktop/init.php' ; ?>
+<?php include_once '../../Polardows/desktop/init.php' ; ?>
 <div class="screen">
     <div class="hud left">a</div>
     <div class="arena">
     </div>
     <div class="hud right">a</div>
 </div>
-<?php include_once '../../polardows/desktop/end.php' ; ?>
+<?php include_once '../../Polardows/desktop/end.php' ; ?>
 <script>
 
     document.title = 'Tetris';
@@ -743,4 +743,4 @@
     start();
 
 </script>
-<?php include_once '../../polardows/desktop/bottom.php' ; ?>
+<?php include_once '../../Polardows/desktop/bottom.php' ; ?>

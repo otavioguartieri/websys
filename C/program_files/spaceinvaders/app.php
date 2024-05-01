@@ -1,4 +1,4 @@
-<?php include_once '../../polardows/desktop/head.php' ; ?>
+<?php include_once '../../Polardows/desktop/head.php' ; ?>
 <style>
     .screen{
     }
@@ -103,7 +103,7 @@
     .dead{ filter:opacity(0) !important; }
     
 </style>
-<?php include_once '../../polardows/desktop/init.php' ; ?>
+<?php include_once '../../Polardows/desktop/init.php' ; ?>
 <div class="screen">
     <div class="arena">
         <div class="enemy_area">
@@ -187,7 +187,7 @@
         </div>
     </div>
 </div>
-<?php include_once '../../polardows/desktop/end.php' ; ?>
+<?php include_once '../../Polardows/desktop/end.php' ; ?>
 <script>
 
     document.title = 'Space Invaders';
@@ -423,4 +423,4 @@
     }
 
 </script>
-<?php include_once '../../polardows/desktop/bottom.php' ; ?>
+<?php include_once '../../Polardows/desktop/bottom.php' ; ?>

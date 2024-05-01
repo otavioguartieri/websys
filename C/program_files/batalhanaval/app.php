@@ -1,5 +1,5 @@
 
-<?php include_once '../../polardows/desktop/head.php' ; ?>
+<?php include_once '../../Polardows/desktop/head.php' ; ?>
 <style>
     @font-face {
         font-family:righteous;
@@ -61,7 +61,7 @@
         box-shadow: inset 0px 0px 0px 2px #FF000080;
     }
 </style>
-<?php include_once '../../polardows/desktop/init.php' ; ?>
+<?php include_once '../../Polardows/desktop/init.php' ; ?>
 <div class="screen">
     <div class="arena">
     </div>
@@ -72,7 +72,7 @@
         <div onclick="choose_ship('4');" class="btn_navselect navio_4">4</div>
     </div>
 </div>
-<?php include_once '../../polardows/desktop/end.php' ; ?>
+<?php include_once '../../Polardows/desktop/end.php' ; ?>
 <script>
 
     document.title = 'Batalha naval muito louca insana de alta complexidade top one brazil dos guri (BNI)';
@@ -177,4 +177,4 @@
         $('.space').removeClass('select_ok');
     }); 
 </script>
-<?php include_once '../../polardows/desktop/bottom.php' ; ?>
+<?php include_once '../../Polardows/desktop/bottom.php' ; ?>

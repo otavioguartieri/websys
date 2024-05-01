@@ -1,4 +1,4 @@
-<?php include_once '../../polardows/desktop/head.php' ; ?>
+<?php include_once '../../Polardows/desktop/head.php' ; ?>
 <style>
     html{
         overflow: hidden;
@@ -55,7 +55,7 @@
     .typer_fill div { background: white; width: calc(100% / 6); display: flex; align-items: center; justify-content: center; height: 100%; font-stretch: normal; }
     .removed { filter:opacity(0); }
 </style>
-<?php include_once '../../polardows/desktop/init.php' ; ?>
+<?php include_once '../../Polardows/desktop/init.php' ; ?>
 <div class="case">
     <div class="screen">
         <div id="typer">
@@ -72,7 +72,7 @@
         </div>
     </div>
 </div>
-<?php include_once '../../polardows/desktop/end.php' ; ?>
+<?php include_once '../../Polardows/desktop/end.php' ; ?>
 <script>
 
     let num = new Array(36);
@@ -153,4 +153,4 @@
         }, 100);
     }
 </script>
-<?php include_once '../../polardows/desktop/bottom.php' ; ?>
+<?php include_once '../../Polardows/desktop/bottom.php' ; ?>

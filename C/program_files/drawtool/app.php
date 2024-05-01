@@ -1,4 +1,4 @@
-<?php include_once '../../polardows/desktop/head.php' ; ?>
+<?php include_once '../../Polardows/desktop/head.php' ; ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
 <style>
     @font-face {
@@ -97,7 +97,7 @@
         height:30px;
     }
 </style>
-<?php include_once '../../polardows/desktop/init.php' ; ?>
+<?php include_once '../../Polardows/desktop/init.php' ; ?>
 <div class="screen">
     <div class="drawarea">
         <div style="background:white;" class="fundo_branco">
@@ -141,7 +141,7 @@
         </div>
     </div>
 </div>
-<?php include_once '../../polardows/desktop/end.php' ; ?>
+<?php include_once '../../Polardows/desktop/end.php' ; ?>
 <script defer>
     document.title="Paintool"
     setItem('desenho_tool','1');
@@ -222,4 +222,4 @@
         });
     }
 </script>
-<?php include_once '../../polardows/desktop/bottom.php' ; ?>
+<?php include_once '../../Polardows/desktop/bottom.php' ; ?>

@@ -16,9 +16,9 @@ $(document).ready(()=>{
                 <div class="poltab_menu_blankspace draggable">
                     <div class="poltab_menu_app-name">123123123</div>
                 </div>
-                <div class="poltab_menu_btn minimize" onmouseup="poltabminimize('123123123');" style="--btnbg:url('../polardows/systemicons/line-mark.png');"></div>
-                <div class="poltab_menu_btn fullscrn" style="--btnbg:url('../polardows/systemicons/resize-mark.png');"></div>
-                <div class="poltab_menu_btn close" onmouseup="poltabremove('123123123');" style="--btnbg:url('../polardows/systemicons/x-mark.png');"></div>
+                <div class="poltab_menu_btn minimize" onmouseup="poltabminimize('123123123');" style="--btnbg:url('../Polardows/systemicons/line-mark.png');"></div>
+                <div class="poltab_menu_btn fullscrn" style="--btnbg:url('../Polardows/systemicons/resize-mark.png');"></div>
+                <div class="poltab_menu_btn close" onmouseup="poltabremove('123123123');" style="--btnbg:url('../Polardows/systemicons/x-mark.png');"></div>
             </div>
             <div class="poltab_content">
                 <iframe id="EmbedderContainer" src="https://embedder.net/e/movie?imdb=tt11379322" width="100%" height="100%" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
@@ -179,9 +179,9 @@ function poltab(app_id,path,app_height=800,app_width=800,app_name,app_image,app_
                     <div class="poltab_menu_app-icon" style="--bgicon:url('../program_files/${app_image}');"></div>
                     <div class="poltab_menu_app-name">${app_name}</div>
                 </div>
-                <div class="poltab_menu_btn minimize" onmouseup="poltabminimize('${app_id}');" style="--btnbg:url('../polardows/systemicons/line-mark.png');"></div>
-                <div class="poltab_menu_btn fullscrn" style="--btnbg:url('../polardows/systemicons/resize-mark.png');"></div>
-                <div class="poltab_menu_btn close" onmouseup="poltabremove('${app_id}');" style="--btnbg:url('../polardows/systemicons/x-mark.png');"></div>
+                <div class="poltab_menu_btn minimize" onmouseup="poltabminimize('${app_id}');" style="--btnbg:url('../Polardows/systemicons/line-mark.png');"></div>
+                <div class="poltab_menu_btn fullscrn" style="--btnbg:url('../Polardows/systemicons/resize-mark.png');"></div>
+                <div class="poltab_menu_btn close" onmouseup="poltabremove('${app_id}');" style="--btnbg:url('../Polardows/systemicons/x-mark.png');"></div>
             </div>
             <div class="poltab_content">
                 <iframe src="C/program_files/${path}/app.php" width="${app_width}" height="${app_height}" style="transform:scale(${app_scale}); margin:${((app_height * (1 - app_scale)) / 2) * -1}px ${((app_width * (1 - app_scale)) / 2) * -1}px" frameborder="0"></iframe>
@@ -208,7 +208,7 @@ function System(){
     var appNameOpen = '';
 
     /* post to php to get apps information */
-    $.post('C/polardows/appboot.php',null,function(data){
+    $.post('C/Polardows/appboot.php',null,function(data){
         if(data.result > -1) /* verify if the post has been succeded */
         $(data.data).each(function(index, item) {
             if(item[1]['app_launch']){ /* if the app is marked as launched the code proceed */
