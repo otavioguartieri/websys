@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>Pol 11</title>
-    <base href="http://websys.localhost/">
+    <base href="http://websys.otavioguarteiri.com.br/">
     <link rel="stylesheet" href="C/polardows/style.css">
     <link rel="shortcut icon" href="C/polardows/systemicons/polaris.png" type="image/x-icon">
     <script src="C/polardows/jquery-3.6.1.min.js"></script>
