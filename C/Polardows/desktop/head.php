@@ -1,10 +1,11 @@
 <?php
     include_once 'path.php';
+    include_once '../systemBasePath.php';
 ?>
 <html>
 <head>
     <title>Pol 11</title>
-    <base href="http://websys.otavioguartieri.com.br/">
+    <base href="<?php echo $systemBasePath; ?>">
     <link rel="stylesheet" href="C/Polardows/style.css">
     <link rel="shortcut icon" href="C/Polardows/systemicons/polaris.png" type="image/x-icon">
     <script src="C/Polardows/jquery-3.6.1.min.js"></script>
