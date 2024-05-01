@@ -39,11 +39,11 @@
         border-bottom:0px !important;
         border-top:10px solid #aaa;
     }
-    .ferramentas div{
-        width:40px;
-        height:40px;
+    .ferramentas .tool{
+        width:40px !important;
+        height:40px !important;
         display:flex;
-        background:green;
+        background:#ddd;
         cursor:pointer;
     }
     .cores div{
@@ -109,10 +109,10 @@
     <div class="menu">
         <div class="tools_up">
             <div class="tools ferramentas">
-                <div class="tool lapis"><img style="width:100%;height:100%;" src="<?php echo $path ?>/appdata/images/lapis.png" alt=""></div>
-                <div class="tool eraser"><img style="width:100%;height:100%;" src="<?php echo $path ?>/appdata/images/borracha.png" alt=""></div>
-                <div class="tool"><img style="width:100%;height:100%;" src="<?php echo $path ?>/appdata/images/borracha.png" alt="" onclick="gerarImagem('png')"></div>
-                <div class="tool"><img style="width:100%;height:100%;" src="<?php echo $path ?>/appdata/images/borracha.png" alt="" onclick="gerarImagem('jpg')"></div>
+                <div class="tool lapis"><img style="width:100%;height:100%;" src="<?php echo $path ?>/appdata/images/pencil.png" alt=""></div>
+                <div class="tool eraser"><img style="width:100%;height:100%;" src="<?php echo $path ?>/appdata/images/eraser.png" alt=""></div>
+                <div class="tool"><img style="width:100%;height:100%;" src="<?php echo $path ?>/appdata/images/png.png" alt="" onclick="gerarImagem('png')"></div>
+                <div class="tool"><img style="width:100%;height:100%;" src="<?php echo $path ?>/appdata/images/jpg.png" alt="" onclick="gerarImagem('jpg')"></div>
             </div>
             <div class="tools cores">
                 <div id="black" style="background:black;" class="cor"></div>
@@ -196,7 +196,7 @@
             case 'jpg':
                 var element = $('.fundo_branco');
                 var typedata = "image/jpeg";
-                var extensao = ".jpeg";
+                var extensao = ".jpg";
             break;
             default:
                 var element = $('.spc');
