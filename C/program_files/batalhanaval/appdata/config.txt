@@ -1,7 +1,12 @@
 {
     "app_installed": true,
-    "app_launch": true,
+    "app_launch": false,
     "app_name": "Batalha naval muito louca insana de alta complexidade top one brazil dos guri (BNI)",
     "app_image": "\/appdata\/assets\/images\/icon.png",
-    "app_id": "4619585394ea"
+    "app_id": "4619585394ea",
+    "app_height": "320",
+    "app_width": "480",
+    "app_scale": "1",
+    "app_fullscreen": 0,
+    "app_resize": 0
 }

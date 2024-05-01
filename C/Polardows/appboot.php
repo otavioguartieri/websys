@@ -1,4 +1,5 @@
 <?php
+    header('Access-Control-Allow-Origin: *');
     $appsfolder = "../program_files/";
     $app = []; /* create new array for the apps */
     $project = scandir($appsfolder); /* search for folders somewhere */

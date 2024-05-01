@@ -3,8 +3,10 @@
     "app_launch": true,
     "app_name": "ProTyper 2000",
     "app_image": "\/appdata\/appimages\/01.png",
+    "app_id": "18c0eaee325f",
     "app_height": "320",
     "app_width": "480",
+    "app_scale": "0.7",
     "app_fullscreen": false,
-    "app_id": "18c0eaee325f"
+    "app_resize": 0
 }

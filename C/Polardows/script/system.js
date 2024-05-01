@@ -153,10 +153,10 @@ function randomNum(limit){
     console.log($('#desktop').width());
 } */
 /* tab open function */
-function poltab(app_id,path,app_height=800,app_width=800,app_name,app_image){
-    $('#desktop').append(`
-        <div class="poltab transition minified" app_id="${app_id}">
-
+function poltab(app_id,path,app_height=800,app_width=800,app_name,app_image,app_scale=1,app_resize=0){
+    app_id = `${new Date().getTime()}_${app_id}`;
+    if(app_resize == 1){
+        app_resize = `
             <div class="tab_resize blocked z_tl"></div>
             <div class="tab_resize blocked z_tr"></div>
             <div class="tab_resize blocked z_bl"></div>
@@ -165,6 +165,14 @@ function poltab(app_id,path,app_height=800,app_width=800,app_name,app_image){
             <div class="tab_resize blocked h_l"></div>
             <div class="tab_resize blocked v_t"></div>
             <div class="tab_resize blocked v_b"></div>
+        `;
+    }else{
+        app_resize = ``;
+    }
+    $('#desktop').append(`
+        <div class="poltab transition minified" app_id="${app_id}">
+            
+            ${app_resize}
 
             <div class="poltab_menu">
                 <div class="poltab_menu_blankspace draggable">
@@ -176,7 +184,7 @@ function poltab(app_id,path,app_height=800,app_width=800,app_name,app_image){
                 <div class="poltab_menu_btn close" onmouseup="poltabremove('${app_id}');" style="--btnbg:url('../polardows/systemicons/x-mark.png');"></div>
             </div>
             <div class="poltab_content">
-                <iframe src="C/program_files/${path}/app.php" width="${app_width}" height="${app_height}" frameborder="0"></iframe>
+                <iframe src="C/program_files/${path}/app.php" width="${app_width}" height="${app_height}" style="transform:scale(${app_scale}); margin:${((app_height * (1 - app_scale)) / 2) * -1}px ${((app_width * (1 - app_scale)) / 2) * -1}px" frameborder="0"></iframe>
             </div>
         </div>
     `);
@@ -235,7 +243,7 @@ function System(){
                 }
                 /* add the final app into the desktop workspace */
                 $('#desktop').append(`
-                    <app onmouseover="highlight(this)" onmouseout="removeHighlight(this)" ondblclick="poltab('${item[1]['app_id']}','${item[0]}','${item[1]["app_height"]}','${item[1]["app_width"]}', '${appName}', '${item[0]}${item[1]['app_image']}');" id="${item[1]['app_id']}" class="close">
+                    <app onmouseover="highlight(this)" onmouseout="removeHighlight(this)" ondblclick="poltab('${item[1]['app_id']}','${item[0]}','${item[1]["app_height"]}','${item[1]["app_width"]}', '${appName}', '${item[0]}${item[1]['app_image']}','${item[1]['app_scale']}','${item[1]['app_resize']}');" id="${item[1]['app_id']}" class="close">
                         <div class="app_display">
                             <div class="app_icon" style="--DesktopAppImage:url('../program_files/${item[0]}${item[1]['app_image']}');"></div>
                             <font class="close">${appName}</font>

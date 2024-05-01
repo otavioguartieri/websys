@@ -3,5 +3,9 @@
     "app_launch": true,
     "app_name": "Space Invaders",
     "app_image": "\/appdata\/assets\/images\/icon.gif",
-    "app_id": "7d7cbff570f9"
+    "app_id": "7d7cbff570f9",
+    "app_height": "600",
+    "app_width": "600",
+    "app_scale": "0.5",
+    "app_fullscreen": false
 }

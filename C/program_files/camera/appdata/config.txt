@@ -1,6 +1,6 @@
 {
     "app_installed": true,
-    "app_launch": true,
+    "app_launch": false,
     "app_name": "Camera",
     "app_image": "\/appdata\/appimages\/icon.png",
     "app_id": "9e257b392d51"

@@ -1,7 +1,12 @@
 {
     "app_installed": true,
     "app_launch": true,
-    "app_name": "Paint Tool",
+    "app_name": "Draw Tool",
     "app_image": "\/appdata\/appimages\/icon.gif",
-    "app_id": "2db8abdb7b11"
+    "app_id": "2db8abdb7b11",
+    "app_height": "420",
+    "app_width": "760",
+    "app_scale": "1.1",
+    "app_fullscreen": 0,
+    "app_resize": 0
 }
