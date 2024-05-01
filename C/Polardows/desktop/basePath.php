@@ -1,3 +1,3 @@
 <?php
-    $systemBasePath = '<base href="http://websys.otavioguartieri.com.br/">';
+    $basePath = '<base href="http://websys.otavioguartieri.com.br/">';
 ?>

@@ -1,6 +1,6 @@
 <?php
     include_once 'path.php';
-    include_once 'systemBasePath.php';
+    include_once 'basePath.php';
 ?>
 <html>
 <head>
