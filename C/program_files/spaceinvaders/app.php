@@ -210,13 +210,9 @@
         posleft += 3;
     }
 
-    var ElementPos = ($('.ship_area').width()/2)-($('.spaceship').width()/2);
-    var AxisX = 0;
-
-    var vel = 2; /* velocidade do player */
     var velBala = 4; /* velocidade da bala */
     var CoolDownDisparo = 60; /* cooldown da bala */
-    var vel_enemey_1 = 10; /* avanço do inimigo na tela */
+    var vel_enemey_1 = 8; /* avanço do inimigo na tela */
     var dist_top_queda = 30; /* avanço da queda do inimigo na tela */
     var cnt_ctrl_vel_enemy = 51 /* velocidade do inimigo na tela (quanto menor mais rapido) padrao 50*/
     var cnt_ctrlenemy = 0; /* controle de pixel do inimigo */
@@ -224,14 +220,21 @@
     var count_temp_enemy_fire = 0; /* tempo do tiro inicial do inimigo */
     var cntr_enemy_fire = 200; /* tempo de disparo do inimigo */
 
+    var timerDisparo = 70;
+
+    /* controles de movimentação */
+
+    var ElementPos = ($('.ship_area').width()/2)-($('.spaceship').width()/2);
+    var AxisX = 0;
+
     var varDir = 0;
     var varEsq = 0;
     var varTiro = 0;
-    var timerDisparo = 70;
+    
+    var vel = 2; /* velocidade do player */
 
     var game = 'stop';
 
-    /* controles de movimentação */
     document.addEventListener("keydown", function(event){
         if($('.spaceship').hasClass('alive'))
             if(game == 'stop'){

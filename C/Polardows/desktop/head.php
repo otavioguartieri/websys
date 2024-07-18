@@ -11,6 +11,7 @@
     <script src="C/Polardows/jquery-3.6.1.min.js"></script>
     <script src="C/Polardows/script/system.js"></script>
     <script src="C/Polardows/script/taskbar.js"></script>
+    <script src="C/Polardows/script/systemAppCreate.js"></script>
     <script src="C/Polardows/script/preventzoom.js"></script>
     <script src="C/Polardows/script/tabresizable.js"></script>
     <script src="C/Polardows/script/draggable.js"></script>

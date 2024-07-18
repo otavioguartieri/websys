@@ -1,10 +1,10 @@
 {
     "app_installed": true,
-    "app_launch": true,
-    "app_name": "TETRIS",
+    "app_launch": false,
+    "app_name": "Snake Game",
     "app_image": "\/appdata\/appimages\/icon.png",
     "app_id": "5886856b4e55",
-    "app_height": "525",
-    "app_width": "500",
+    "app_width": "600",
+    "app_height": "400",
     "app_fullscreen": false
 }

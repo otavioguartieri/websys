@@ -136,7 +136,8 @@ function getdateClean(){
             ""+date.getFullYear()+
             ""+date.getHours()+
             ""+date.getMinutes()+
-            ""+date.getSeconds();
+            ""+date.getSeconds()+
+            ""+date.getMilliseconds();
 }
 
 /* generate random numbers. with limit  */

@@ -23,6 +23,12 @@
     }
     .hud{
         width:100px;
+        background:red;
+    }
+    .hud .hud_nextPiece{
+        width: calc(100% - 10px);
+        box-sizing:border-box;
+        background-color:blue;
     }
     .block{
         width:25px;
@@ -51,7 +57,11 @@
 </style>
 <?php include_once '../../Polardows/desktop/init.php' ; ?>
 <div class="screen">
-    <div class="hud left">a</div>
+    <div class="hud left">
+        <div class="hud_nextPiece">
+            a
+        </div>
+    </div>
     <div class="arena">
     </div>
     <div class="hud right">a</div>
@@ -724,7 +734,7 @@
 
                 setTimeout(() => {
                     generateBlock();
-                },                          );
+                },);
 
             }else{
                 if($('.arena').find('.piece.active').length > 0){
