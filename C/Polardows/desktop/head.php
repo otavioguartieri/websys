@@ -4,7 +4,7 @@
 ?>
 <html>
 <head>
-    <?php echo ($basePath ?? '<base href="http://websys.otavioguartieri.com.br/">'); ?>
+    <?php echo ($basePath ?? '<base href="http://otavioguartieri.com.br/websys/">'); ?>
     <title>Pol 11</title>
     <link rel="stylesheet" href="C/Polardows/style.css">
     <link rel="shortcut icon" href="C/Polardows/systemicons/polaris.png" type="image/x-icon">
