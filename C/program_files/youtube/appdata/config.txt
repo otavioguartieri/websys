@@ -1,0 +1,14 @@
+{
+    "app_installed": true,
+    "app_launch": true,
+    "app_name": "YouTube",
+    "app_image": "\/appdata\/appimages\/icon.png",
+    "app_height": "300",
+    "app_width": "600",
+    "app_scale": "1",
+    "app_fullscreen": 0,
+    "app_resize": 0,
+    "app_url": "https:\/\/www.youtube.com\/",
+    "app_blank": true,
+    "app_id": "0864577b9037"
+}

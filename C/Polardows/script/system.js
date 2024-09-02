@@ -180,12 +180,14 @@ function poltab(app_id,path,app_height=800,app_width=800,app_name,app_image,app_
                     <div class="poltab_menu_app-icon" style="--bgicon:url('../program_files/${app_image}');"></div>
                     <div class="poltab_menu_app-name">${app_name}</div>
                 </div>
-                <div class="poltab_menu_btn minimize" onmouseup="poltabminimize('${app_id}');" style="--btnbg:url('../Polardows/systemicons/line-mark.png');"></div>
-                <div class="poltab_menu_btn fullscrn" style="--btnbg:url('../Polardows/systemicons/resize-mark.png');"></div>
-                <div class="poltab_menu_btn close" onmouseup="poltabremove('${app_id}');" style="--btnbg:url('../Polardows/systemicons/x-mark.png');"></div>
+                <div class="poltab_menu_act">
+                    <div class="poltab_menu_btn minimize" onmouseup="poltabminimize('${app_id}');" style="--btnbg:url('../Polardows/systemicons/line-mark.png');"></div>
+                    <div class="poltab_menu_btn fullscrn" style="--btnbg:url('../Polardows/systemicons/resize-mark.png');"></div>
+                    <div class="poltab_menu_btn close" onmouseup="poltabremove('${app_id}');" style="--btnbg:url('../Polardows/systemicons/x-mark.png');"></div>
+                </div>
             </div>
             <div class="poltab_content">
-                <iframe src="C/program_files/${path}/app.php" width="${app_width}" height="${app_height}" style="transform:scale(${app_scale}); margin:${((app_height * (1 - app_scale)) / 2) * -1}px ${((app_width * (1 - app_scale)) / 2) * -1}px" frameborder="0"></iframe>
+                <iframe src="${path}" width="${app_width}" height="${app_height}" style="transform:scale(${app_scale}); margin:${((app_height * (1 - app_scale)) / 2) * -1}px ${((app_width * (1 - app_scale)) / 2) * -1}px" frameborder="0"></iframe>
             </div>
         </div>
     `);
@@ -221,6 +223,7 @@ function System(){
                 appNameOpen = '';
 
                 /* function to count and cut the space of the apps name */
+                
                 $(item[1]['app_name']).each(function(k,v){
                     nameSize+=obterTamanhoTexto(v)['width']; /* get each word size in width */
                     if(nameSize <= appSize){ /* verify if is fit on the inside of the label */
@@ -235,6 +238,7 @@ function System(){
                         nameSize = 0; /* clear the sum of all the words to start over on the new line */
                     }
                 });
+
                 if(lineCount > 2){ /* if the line amount is bigger than 2, it will add a mask and the "..." at the end of it */
                     appNameOpen = appName;
                     appName = `${appName.split('<br>')[0]}`+'...';
@@ -243,8 +247,13 @@ function System(){
                     }
                 }
                 /* add the final app into the desktop workspace */
+
+                item[1]['app_url'] = (item[1]['app_url'] == '' ? `C/program_files/${item[0]}/app.php` : item[1]['app_url']);
+            
+                var app_dbclick = (item[1]['app_blank'] ? `window.location.href = '${item[1]['app_url']}';` : `poltab('${item[1]['app_id']}','${item[1]['app_url']}','${item[1]["app_height"]}','${item[1]["app_width"]}', '${appName}', '${item[0]}${item[1]['app_image']}','${item[1]['app_scale']}','${item[1]['app_resize']}');`)
+                
                 $('#desktop').append(`
-                    <app onmouseover="highlight(this)" onmouseout="removeHighlight(this)" ondblclick="poltab('${item[1]['app_id']}','${item[0]}','${item[1]["app_height"]}','${item[1]["app_width"]}', '${appName}', '${item[0]}${item[1]['app_image']}','${item[1]['app_scale']}','${item[1]['app_resize']}');" id="${item[1]['app_id']}" class="close">
+                    <app onmouseover="highlight(this)" onmouseout="removeHighlight(this)" ondblclick="${app_dbclick}" id="${item[1]['app_id']}" class="close">
                         <div class="app_display">
                             <div class="app_icon" style="--DesktopAppImage:url('../program_files/${item[0]}${item[1]['app_image']}');"></div>
                             <font class="close">${appName}</font>

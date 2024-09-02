@@ -18,6 +18,12 @@
             if($app[$k][1]['app_id'] == null)
                 $app[$k][1]['app_id'] = str_split(md5($v.$app[$k][1]['app_name']), 12)[0];
 
+            if($app[$k][1]['app_url'] == null)
+                $app[$k][1]['app_url'] = '';
+
+            if($app[$k][1]['app_blank'] == null)
+                $app[$k][1]['app_blank'] = false;
+
             file_put_contents($appsfolder.$v."/appdata/config.txt", json_encode($app[$k][1], JSON_PRETTY_PRINT));
 
             $app[$k][1]['app_name'] = explode(" ", $app[$k][1]['app_name']);

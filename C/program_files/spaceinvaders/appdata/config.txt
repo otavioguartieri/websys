@@ -7,5 +7,7 @@
     "app_height": "600",
     "app_width": "600",
     "app_scale": "0.5",
-    "app_fullscreen": false
+    "app_fullscreen": false,
+    "app_url": "",
+    "app_blank": false
 }

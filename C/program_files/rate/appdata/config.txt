@@ -1,0 +1,14 @@
+{
+    "app_installed": true,
+    "app_launch": true,
+    "app_name": "Rate",
+    "app_image": "\/appdata\/appimages\/icon.png",
+    "app_height": "600",
+    "app_width": "300",
+    "app_scale": "1",
+    "app_fullscreen": 0,
+    "app_resize": 0,
+    "app_url": "https:\/\/rate.otavioguartieri.com.br\/",
+    "app_blank": true,
+    "app_id": "12ec3e1e408a"
+}

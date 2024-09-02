@@ -15,6 +15,7 @@
     --PoltabResizeZIndex: 4;
     --PoltabResizeCornerZIndex: 5;
     --PoltabMinifiedTransitionTime:130ms;
+    --PoltabBorderRadius: 6px;
     --AppZIndex: 2;
     --TaskbarZIndex: 5;
 }
@@ -145,7 +146,7 @@ app.mouseOver .app_display{
     top: 200px;
     z-index: var(--PoltabZIndex);
     background: #151515;
-    border-radius: 6px;
+    border-radius: var(--PoltabBorderRadius);
     border: 1px solid #000;
     box-sizing: border-box;
     box-shadow: 0px 0px 19px -2px #00000066;
@@ -174,7 +175,6 @@ app.mouseOver .app_display{
     background-color: #242424;
     border-bottom: 1px solid #000;
     box-sizing: border-box;
-    overflow: hidden;
     display: flex;
     justify-content: end;
 }
@@ -212,6 +212,19 @@ app.mouseOver .app_display{
     height: 100%;
     width: calc(100% - calc(var(--PoltabMenuBtnWidth) * 3));
 }
+.poltab_menu_blankspace.drag_active{
+    margin-top: -250px;
+    z-index: 10;
+    display: flex;
+    padding: 250px 0;
+}
+.poltab_menu_act{
+    display: flex;
+    height: 100%;
+    width: calc(var(--PoltabMenuBtnWidth)* 3);
+    overflow: hidden;
+    border-top-right-radius: var(--PoltabBorderRadius);
+}
 .poltab_menu_app-icon{
     background-image: var(--bgicon);
     width: calc(var(--PoltabMenuHeight) - 5px);
@@ -229,6 +242,7 @@ app.mouseOver .app_display{
     width: fit-content;
     padding: 0 6px;
     font-size: 13px;
+    pointer-events: none;
 }
 .tab_resize{
     position: absolute;

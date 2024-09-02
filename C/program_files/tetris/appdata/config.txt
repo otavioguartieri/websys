@@ -6,5 +6,7 @@
     "app_id": "5886856b4e55",
     "app_height": "525",
     "app_width": "500",
-    "app_fullscreen": false
+    "app_fullscreen": false,
+    "app_url": "",
+    "app_blank": false
 }
